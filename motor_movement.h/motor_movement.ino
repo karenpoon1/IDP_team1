@@ -2,12 +2,16 @@ void setup() {
     AFMS.begin();
 }
 
-void move_forward() {
-    motor_left->setSpeed(50);
-    motor_right->setSpeed(50);
+void move_forward(int speed, int desired_distance) {
+    double actual_speed;
+    int time;
+    actual_speed = speed/12.5 //manual calibration
+    time = (desired_distance/actual_speed)*1000
+    motor_left->setSpeed(speed);
+    motor_right->setSpeed(speed);
     motor_left->run(FORWARD);
     motor_right->run(BACKWARD);
-    delay(3000);
+    delay(time);
 }
 
 void move_backward() {
@@ -15,14 +19,14 @@ void move_backward() {
     motor_right->setSpeed(50);
     motor_left->run(BACKWARD);
     motor_right->run(FORWARD);
-    delay(1000);
+    delay(3000);
 }
 
 void clockwise_90() {
     motor_left->setSpeed(50);
     motor_right->setSpeed(0);
     motor_left->run(FORWARD);
-    delay(3896);
+    delay(13000);
 }
 
 void anticlockwise_90() {
@@ -39,14 +43,8 @@ void stop_motors() {
 }
 
 void loop() {
-//    move_forward();
+    move_forward();
 //    stop_motors();
-    anticlockwise_90();
-    stop_motors();
-//     move_forward;
-//     clockwise_90;
-//     move_forward;
-//     clockwise_90;
-//     move_forward;
-//     clockwise_90;
+//     anticlockwise_90();
+//     stop_motors();
 }
