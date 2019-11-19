@@ -4,6 +4,7 @@ Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 Adafruit_DCMotor *myMotor1 = AFMS.getMotor(1);
 
 Adafruit_DCMotor *myMotor2 = AFMS.getMotor(2);
+
 void motorforward() {
   myMotor1->setSpeed(150);
   myMotor1->run(FORWARD);
@@ -39,8 +40,9 @@ void motorturnclock() {
 }
 void setup() {
   // put your setup code here, to run once:
-  AFMS.begin();
-
+    AFMS.begin();
+    myMotor1->setSpeed(150);
+    myMotor2->setSpeed(150);
 }
 
 void loop() {
