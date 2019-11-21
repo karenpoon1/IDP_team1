@@ -8,7 +8,13 @@ Adafruit_DCMotor *motor_right = AFMS.getMotor(2);
 
 int speed = 50
 
-void move_forward(int desired_distance) {
+void move_forward() {
+    motor_left->setSpeed(speed);
+    motor_right->setSpeed(speed);
+    motor_left->run(FORWARD);
+    motor_right->run(BACKWARD);
+
+void move_distance_forward(int desired_distance) {
     double actual_speed;
     int time;
     actual_speed = speed/12.5 //manual calibration

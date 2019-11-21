@@ -6,6 +6,7 @@ void setup() {
     pinMode(echoPin, INPUT);
     pinMode(led_red, OUTPUT);
     pinMode(led_green, OUTPUT);
+    move_forward();
 
 void loop() {
     ultrasonic();
