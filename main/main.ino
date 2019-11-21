@@ -1,9 +1,11 @@
 
 void setup() {
-    Serial.begin (9600);
-    AFMS.begin();
+    AFMS.begin(); // Setup motor
+    Serial.begin (9600); // Setup ultrasonic sensor
     pinMode(trigPin, OUTPUT);
     pinMode(echoPin, INPUT);
     pinMode(led_red, OUTPUT);
     pinMode(led_green, OUTPUT);
 
+void loop() {
+    ultrasonic();
