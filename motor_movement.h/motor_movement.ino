@@ -40,7 +40,7 @@ void anticlockwise_90() {
 void stop_motors() {
     motor_left->setSpeed(0);
     motor_right->setSpeed(0);
-    delay(100000);
+    //delay(100000);
 }
 
 void loop() {
