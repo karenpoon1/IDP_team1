@@ -1,17 +1,38 @@
 #include <Wire.h>
 #include <Adafruit_MotorShield.h>
 #include "utility/Adafruit_MS_PWMServoDriver.h"
+#include <Servo.h> 
 
 Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 Adafruit_DCMotor *motor_left = AFMS.getMotor(1);
 Adafruit_DCMotor *motor_right = AFMS.getMotor(2);
 
-void motor_setup () {
+     
+     
+
+void motors_setup () {
    AFMS.begin(); // Setup motor
+   int servoPin = 9;
+   Servo servo;  
+   int angle = 0;//current servo angle
+   servo.attach(servoPin);
    //include other motor & servo code here when available
 }
 
-//servo functions go here
+void servo_forward (int inputangle) {
+  for(angle = 0; angle < inputangle; angle++)  {                                  
+        servo.write(angle);               
+        delay(15);                   
+      } 
+}
+
+void servo_backward (int inputangle) {
+  for(angle = inputangle; angle > 0; angle--) {
+        servo.write(angle);           
+        delay(15);                               
+  }
+            
+}
 
 void motor_start (int speed) {
     motor_left->setSpeed(speed);

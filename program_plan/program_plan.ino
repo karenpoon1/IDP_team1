@@ -7,7 +7,7 @@ void setup() {
   //homing here?
   ultrasonic2();//the forward one
   motor_start(100);
-  while (distance > 5) {//adjust for actual separation needed for pickup
+  while (distance2 > 5) {//adjust for actual separation needed for pickup
     delay(10);
   }
   stop_motors();
@@ -17,10 +17,14 @@ void setup() {
   anticlockwise_90();
   move_distance_forward(100,10);
   dropoffmine();
-  
+  //homing and turn
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  if (mines = 8);
+  // starting position is on line, facing down
+  if (mines = 8) {
+    ultrasonic2();
+    motor_start(100);
+    while 
+  }
 }
