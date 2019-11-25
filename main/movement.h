@@ -6,19 +6,21 @@ Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 Adafruit_DCMotor *motor_left = AFMS.getMotor(1);
 Adafruit_DCMotor *motor_right = AFMS.getMotor(2);
 
-int speed = 50
+int speed = 50;
 
 void move_forward() {
-    motor_left->setSpeed(speed);
-    motor_right->setSpeed(speed);
+    motor_left->setSpeed(50);
+    motor_right->setSpeed(50);
     motor_left->run(FORWARD);
     motor_right->run(BACKWARD);
+}
 
 void move_distance_forward(int desired_distance) {
+    //desired_distance in cm
     double actual_speed;
     int time;
-    actual_speed = speed/12.5 //manual calibration
-    time = (desired_distance/actual_speed)*1000
+    actual_speed = speed/12.5; //manual calibration
+    time = (desired_distance/actual_speed)*1000;
     motor_left->setSpeed(speed);
     motor_right->setSpeed(speed);
     motor_left->run(FORWARD);
@@ -30,7 +32,19 @@ void move_backward() {
     motor_right->setSpeed(50);
     motor_left->run(BACKWARD);
     motor_right->run(FORWARD);
-    delay(3000);
+}
+
+void move_distance_backward(int desired_distance) {
+    //desired_distance in cm
+    double actual_speed;
+    int time;
+    actual_speed = speed/12.5; //manual calibration
+    time = (desired_distance/actual_speed)*1000;
+    motor_left->setSpeed(speed);
+    motor_right->setSpeed(speed);
+    motor_left->run(BACKWARD);
+    motor_right->run(FORWARD);
+    delay(time);
 }
 
 void clockwise_90() {
@@ -50,7 +64,7 @@ void anticlockwise_90() {
 void stop_motors() {
     motor_left->setSpeed(0);
     motor_right->setSpeed(0);
-    delay(100000);
+//    delay(100000);
 }
 
 //void loop() {
