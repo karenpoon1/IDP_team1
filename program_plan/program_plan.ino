@@ -1,6 +1,6 @@
 void setup() {
   // put your setup code here, to run once:
-  int mines = 0;
+  int wall_distance, mines = 0;
   motor_setup();
   move_distance_forward(100,10);
   anticlockwise_90();

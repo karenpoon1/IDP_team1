@@ -3,10 +3,10 @@
 //#define led_red 11
 //#define led_green 10
 
-long new_reading 240;
+long new_reading = 240;
 
 long ultrasonic1() {
-    long duration, distance;
+    long duration, distance, old_reading;
     digitalWrite(trigPin, LOW);
     delayMicroseconds(2);
     digitalWrite(trigPin, HIGH);
