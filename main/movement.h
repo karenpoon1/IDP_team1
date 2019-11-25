@@ -64,7 +64,13 @@ void anticlockwise_90() {
 void stop_motors() {
     motor_left->setSpeed(0);
     motor_right->setSpeed(0);
-//    delay(100000);
+    //delay(100000); delay for tests only
+}
+//make this proper end - add return to starting box section, then stop
+void endrun(void) {
+  //stop all programming
+  noInterrupts();
+  while(1) {}
 }
 
 //void loop() {

@@ -5,7 +5,7 @@ void mine_detected {
   //I can hard code this if needed, e.g.:
   mine_distance = distance;
   //start_motors(speed);
-  for (int x = 1; x < 300; x = x + 1){
+  for (int x = 1; x < 300; x = x + 1){//distance but delay uses time - check speed
     if (distance < mine_distance) {
       //closer_mine = true;
       break;
