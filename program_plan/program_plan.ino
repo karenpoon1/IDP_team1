@@ -1,10 +1,11 @@
 void setup() {
   // put your setup code here, to run once:
-  int wall_distance, mines = 0;
+  int mines = 0;
   motor_setup();
-  move_distance_forward(100,10);
+  move_distance_forward(100,15);
   anticlockwise_90();
-  ultrasonic();
+  //homing here?
+  ultrasonic2();//the forward one
   motor_start(100);
   while (distance > 5) {//adjust for actual separation needed for pickup
     delay(10);
@@ -21,5 +22,5 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  //add 1 to mines after each is dropped off - maybe define inside drop off code?
+  if (mines = 8);
 }
