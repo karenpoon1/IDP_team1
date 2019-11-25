@@ -1,8 +1,13 @@
 void pickupmine() {
   //insert pickup code here
+  //something to do with angle
+  //need to take input from hall sensors
+  //use servo to grab
+  //lift or flip depending on orientation (variable for flipping)
 }
  void dropoffmine() {
   //insert drop off code here
+  //if flipped unflip
   mines += 1
 }
 

@@ -7,7 +7,7 @@
 
 long new_reading 240;
 
-long ultrasonic1() {
+long ultrasonic1() {//the one on the side, used for testing so far
     long duration, distance1;
     digitalWrite(trigPin1, LOW);
     delayMicroseconds(2);
@@ -21,7 +21,7 @@ long ultrasonic1() {
     return distance1;
 }
 
-long ultrasonic2() {
+long ultrasonic2() {//the front one
     long duration, distance2;
     digitalWrite(trigPin2, LOW);
     delayMicroseconds(2);

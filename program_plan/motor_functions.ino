@@ -6,8 +6,7 @@
 Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 Adafruit_DCMotor *motor_left = AFMS.getMotor(1);
 Adafruit_DCMotor *motor_right = AFMS.getMotor(2);
-
-     
+//will need to add flip motor here    
      
 
 void motors_setup () {

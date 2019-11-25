@@ -17,7 +17,8 @@ void setup() {
   anticlockwise_90();
   move_distance_forward(100,10);
   dropoffmine();
-  //homing and turn
+  //turn
+  //homing
 }
 
 void loop() {
@@ -25,6 +26,15 @@ void loop() {
   if (mines = 8) {
     ultrasonic2();
     motor_start(100);
-    while 
+    //while not close to far wall keep going
+    //turn 90 degrees 
+    endprogram();
   }
+  //usual find mine loop here
+  //copy found mine code here
+  //then pick up mine 
+  //return to corner
+  //drop mine
+  //return to line
+  //homing
 }
