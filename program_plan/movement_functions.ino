@@ -3,6 +3,7 @@ void pickupmine() {
 }
  void dropoffmine() {
   //insert drop off code here
+  mines += 1
 }
 
 void homing() {
