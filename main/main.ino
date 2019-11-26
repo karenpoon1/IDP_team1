@@ -1,7 +1,7 @@
 #include "movement.h"
 #include "ultrasonic.h"
 #include "initial_movement.h"
-int mine_counter;
+int mine_counter = 0;
 
 void setup() {
     AFMS.begin(); // Setup motor
@@ -12,19 +12,36 @@ void setup() {
     pinMode(led_white, OUTPUT);
     mine_counter = 0;
 //    initial_movement();
-//    move_forward();
+    move_forward();
 }
 
 void loop() {
-    move_forward();
-    while (true) {
-      detect_mine();
+    if (mine_counter == 0) {
+//        move_forward();
+        while (true) {
+            detect_mine();
+            actual_detect(5);
+                if (mine_detected){
+                    break;
+                }
+        }
+        // detect mine orientation 
+        // flip / grip mine
+        
+//        move_forward();
+        delay(1000000);
+    if (mine_counter > 0 && mine_counter < 7) {
+        while (true) {
+            }
+    }
+    mine_counter++;
+        
+    }
+}
+
 //    while (old_mine_distance > 80 && new_mine_distance > 80) {
 //        detect_mine();
-    }
 //        stop_motors();
-
-    }
 //    stop_motors();
 //    delay(1000000);
 //}

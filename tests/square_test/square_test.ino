@@ -15,7 +15,7 @@ void move_forward() {
     motor_right->setSpeed(50);
     motor_left->run(FORWARD);
     motor_right->run(BACKWARD);
-    delay(3000);
+    delay(5000);
 }
 
 void move_backward() {
@@ -23,21 +23,21 @@ void move_backward() {
     motor_right->setSpeed(50);
     motor_left->run(BACKWARD);
     motor_right->run(FORWARD);
-    delay(3000);
+    delay(5000);
 }
 
 void clockwise_90() {
     motor_left->setSpeed(50);
     motor_right->setSpeed(0);
     motor_left->run(FORWARD);
-    delay(13000);
+    delay(10600);
 }
 
 void anticlockwise_90() {
     motor_left->setSpeed(50);
     motor_right->setSpeed(0);
     motor_left->run(BACKWARD);
-    delay(13000);
+    delay(12000);
 }
 
 void stop_motors() {
@@ -49,6 +49,7 @@ void stop_motors() {
 void loop() {
     move_forward();
     clockwise_90();
+
 //     stop_motors();
 
 }

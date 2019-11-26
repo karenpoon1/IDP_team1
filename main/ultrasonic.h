@@ -4,13 +4,14 @@
 #define led_red 10
 #define led_white 11
 
-//long old_mine_distance = 240;
-//long new_mine_distance = 240;
-//long second_old_mine_distance;
-//long second_new_mine_distance;
+long distance = 0;
+long prev_mine_distance = 0;
+bool mine_detected = false;
+//int thresh_from_mine;
 
 void detect_mine() {
-    long duration, distance;
+    long duration;
+    prev_mine_distance = distance;
     digitalWrite(trigPin, LOW);
     delayMicroseconds(2);
     digitalWrite(trigPin, HIGH);
@@ -18,33 +19,33 @@ void detect_mine() {
     digitalWrite(trigPin, LOW);
     duration = pulseIn(echoPin, HIGH);
     distance = (duration/2) / 29.1; // Assume speed of sound 340m/s
-    
-    if (distance == 0) {
+}
+
+void actual_detect(int thresh_from_mine) {
+    if (prev_mine_distance == 0 || distance == 0) {
         digitalWrite(led_red,LOW);
         digitalWrite(led_white,LOW);
     }
-    
-    else if (distance < 30) {
+    else if (prev_mine_distance < thresh_from_mine && distance < thresh_from_mine) {
         stop_motors();
         digitalWrite(led_red,HIGH);
         digitalWrite(led_white,LOW);
+        mine_detected = true;
     }
     else {
         digitalWrite(led_red,LOW);
         digitalWrite(led_white,HIGH);
     }
+    
     if (distance >= 200 || distance <= 0){
-//        stop_motors();
         Serial.println("Out of range");
     }
     else {
         Serial.print(distance);
         Serial.println(" cm");
     }
+    
     delay(500);
-//    old_mine_distance = new_mine_distance;
-//    new_mine_distance = distance;
-//    Serial.print(distance);
 }
 
 //if (new_mine_distance < 80) {  // This is where the LED On/Off happens

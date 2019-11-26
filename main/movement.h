@@ -9,8 +9,8 @@ Adafruit_DCMotor *motor_right = AFMS.getMotor(2);
 int speed = 50;
 
 void move_forward() {
-    motor_left->setSpeed(50);
-    motor_right->setSpeed(50);
+    motor_left->setSpeed(40);
+    motor_right->setSpeed(40);
     motor_left->run(FORWARD);
     motor_right->run(BACKWARD);
 }
