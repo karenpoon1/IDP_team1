@@ -1,48 +1,33 @@
 #include "movement.h"
 #include "ultrasonic.h"
 #include "initial_movement.h"
-int mine_counter = 0;
+int mine_counter;
 
 void setup() {
     AFMS.begin(); // Setup motor
     Serial.begin (9600); // Setup ultrasonic sensor
     servo_setup();
+    LED_setup();
     pinMode(trigPin, OUTPUT);
     pinMode(echoPin, INPUT);
+    //LED_state - what format - needs 3 states? (flashing orange, flashing red, solid orange)
     pinMode(led_red, OUTPUT);//do we need these LEDs
     pinMode(led_white, OUTPUT);
     mine_counter = 0;
 //    initial_movement();
-    move_forward();
+//    move_forward();
 }
 
 void loop() {
-    if (mine_counter == 0) {
-//        move_forward();
-        while (true) {
-            detect_mine();
-            actual_detect(5);
-                if (mine_detected){
-                    break;
-                }
-        }
-        // detect mine orientation 
-        // flip / grip mine
-        
-//        move_forward();
-        delay(1000000);
-    if (mine_counter > 0 && mine_counter < 7) {
-        while (true) {
-            }
-    }
-    mine_counter++;
-        
-    }
-}
-
+    move_forward();
+    while (true) {
+      detect_mine();
 //    while (old_mine_distance > 80 && new_mine_distance > 80) {
 //        detect_mine();
+    }
 //        stop_motors();
+
+    }
 //    stop_motors();
 //    delay(1000000);
 //}
