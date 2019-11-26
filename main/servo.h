@@ -1,3 +1,6 @@
+#include "utility/Adafruit_MS_PWMServoDriver.h"
+#include <Servo.h> 
+
 void servo_setup() {
    int servoPin = 9;
    Servo servo;  
