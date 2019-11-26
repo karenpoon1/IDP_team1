@@ -6,9 +6,10 @@ int mine_counter;
 void setup() {
     AFMS.begin(); // Setup motor
     Serial.begin (9600); // Setup ultrasonic sensor
+    servo_setup();
     pinMode(trigPin, OUTPUT);
     pinMode(echoPin, INPUT);
-    pinMode(led_red, OUTPUT);
+    pinMode(led_red, OUTPUT);//do we need these LEDs
     pinMode(led_white, OUTPUT);
     mine_counter = 0;
 //    initial_movement();

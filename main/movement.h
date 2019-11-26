@@ -55,10 +55,32 @@ void clockwise_90() {
 }
 
 void anticlockwise_90() {
+    int timedelay = 13000;
     motor_left->setSpeed(50);
     motor_right->setSpeed(0);
     motor_left->run(BACKWARD);
-    delay(13000);
+    unsigned long startturn = millis();
+    while (true) {
+      unsigned long currentMillis = millis();
+      if (currentMillis - startturn >= timedelay) {
+        //turn LED off?
+        break
+      }
+      else if (currentMillis - previousMillis >= 500) {
+            previousMillis = currentMillis;
+
+      }
+      //need to factor in which led is on - flashing orange, flashing red, continuous orange
+    }
+    //measure millis at time
+    //while loop less than delay time
+    //if millis 0.5 s from last change
+    //flip input
+    if (ledState == LOW) {
+      ledState = HIGH;
+    } else {
+      ledState = LOW;
+    }
 }
 
 void stop_motors() {
