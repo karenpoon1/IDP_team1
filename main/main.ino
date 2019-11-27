@@ -1,21 +1,17 @@
 #include "movement.h"
 #include "ultrasonic.h"
 #include "initial_movement.h"
+
 int mine_counter;
 
 void setup() {
     AFMS.begin(); // Setup motor
-    Serial.begin (9600); // Setup ultrasonic sensor
+    Serial.begin (9600); // Don't really need at last
     servo_setup();
-    LED_setup();
-    pinMode(trigPin, OUTPUT);
-    pinMode(echoPin, INPUT);
-    //LED_state - what format - needs 3 states? (flashing orange, flashing red, solid orange)
-    pinMode(led_red, OUTPUT);//do we need these LEDs
-    pinMode(led_white, OUTPUT);
+    LED_setup(); // LED_state - what format - needs 3 states? (flashing orange, flashing red, solid orange)
+    front_ultrasonic_setup();
     mine_counter = 0;
 //    initial_movement();
-//    move_forward();
 }
 
 void loop() {

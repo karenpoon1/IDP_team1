@@ -7,7 +7,13 @@
 long distance = 0;
 long prev_mine_distance = 0;
 bool mine_detected = false;
-//int thresh_from_mine;
+
+void front_ultrasonic_setup() {
+    pinMode(trigPin, OUTPUT);
+    pinMode(echoPin, INPUT);
+    pinMode(led_red, OUTPUT);// Do we need these LEDs
+    pinMode(led_white, OUTPUT);
+}
 
 void detect_mine() {
     long duration;
@@ -36,7 +42,8 @@ void actual_detect(int thresh_from_mine) {
         digitalWrite(led_red,LOW);
         digitalWrite(led_white,HIGH);
     }
-    
+
+    // Serial Monitor output
     if (distance >= 200 || distance <= 0){
         Serial.println("Out of range");
     }
@@ -47,14 +54,6 @@ void actual_detect(int thresh_from_mine) {
     
     delay(500);
 }
-
-//if (new_mine_distance < 80) {  // This is where the LED On/Off happens
-//    digitalWrite(led_red,HIGH); // When the Red condition is met, the Green LED should turn off
-//    digitalWrite(led_green,LOW);
-//    stop_motors();
-//    check_mine_forward();
-//    goto_mine();
-//}
 
 //void check_mine_forward() {
 //    move_forward();
@@ -73,8 +72,7 @@ void actual_detect(int thresh_from_mine) {
 //
 //}
 //
-//
-//
+
 //void goto_mine() {
 //
 ////    else {
