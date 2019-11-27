@@ -1,11 +1,12 @@
 LED_setup() {
-  const int ledPin = LED_BUILTIN; //change for actual LED pin
-  //add red ledpin - change names
+  const int orangepin = LED_BUILTIN; //change for actual LED pin
+  const int redpin = 11;
   int orangeState = LOW;
   int redState = LOW;
   const long interval = 500;
   pinMode (ledPin, OUTPUT);
   //pinMode (ledPinred, OUTPUT);
+  char LED_state = o; //orange also use r (red) or s(solid)
 }
 
 void delay_with_LEDs (int timedelay) {
@@ -23,17 +24,19 @@ void delay_with_LEDs (int timedelay) {
         break
       }
       //include an larger if statement that takes LED state
-      //solid orange first - is that actually while moving though? 
+      //solid orange first - is that actually while moving though? -if so it shouldn't turn off...
+      //when is mine detected?
       //maybe using orange only on delay...
-      else if (currentMillis - previousMillis >= 500) {
-            previousMillis = currentMillis;
-            //change LED state - which colour though?
-            //    if (ledState == LOW) {
-      //ledState = HIGH;
-    //} else {
-    //  ledState = LOW;
-    //}
-    //    digitalWrite(ledPin, ledState);
+      if (LED_state = s) {//assuming it was turned on when first detected? - check this
+        continue;
       }
-    }
-}
+      if (currentMillis - previousMillis >= 500) {
+            previousMillis = currentMillis;
+            if (LED_state == o) {
+              orangeState = !orangeState;
+              digitalWrite(orangepin, orangeState); 
+            }
+            else if (LED_state == r) {
+              redState = !redState;
+              digitalWrite(redpin, redState);
+            }
