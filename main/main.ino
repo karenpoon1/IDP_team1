@@ -19,6 +19,28 @@ void setup() {
 }
 
 void loop() {
+      if (mine_counter == 0) {
+//        move_forward();
+        while (true) {
+            detect_mine();
+            actual_detect(5);
+                if (mine_detected){
+                    break;
+                }
+        }
+        // detect mine orientation 
+        // flip / grip mine
+
+//        move_forward();
+        delay(1000000);
+    if (mine_counter > 0 && mine_counter < 7) {
+        while (true) {
+            }
+    }
+    mine_counter++;
+
+    }
+}
     move_forward();
     while (true) {
       detect_mine();
