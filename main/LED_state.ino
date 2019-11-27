@@ -3,10 +3,12 @@ const int redpin = 13;
 int orangeState = LOW;
 int redState = LOW;
 const long interval = 500;
-pinMode (orangepin, OUTPUT);
-pinMode (redpin, OUTPUT);
-char LED_state = o; //orange also use r (red) or s(solid)
+char LED_state = o; //orange also use r (red) or s(solid) CHANEG
 
+void led_setup() {
+  pinMode (orangepin, OUTPUT);
+  pinMode (redpin, OUTPUT);
+}
 
 void delay_with_LEDs (int timedelay) {
     unsigned long startdelay = millis();
