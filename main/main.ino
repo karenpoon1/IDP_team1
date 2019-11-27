@@ -8,7 +8,7 @@ void setup() {
     AFMS.begin(); // Setup motor
     Serial.begin (9600); // Don't really need at last
     servo_setup();
-    LED_setup(); // LED_state - what format - needs 3 states? (flashing orange, flashing red, solid orange)
+    LED_setup(); // LEDs initialized
     front_ultrasonic_setup();
     mine_counter = 0;
 //    initial_movement();
