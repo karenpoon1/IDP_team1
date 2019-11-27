@@ -9,8 +9,8 @@ Adafruit_DCMotor *motor_right = AFMS.getMotor(2);
 int speed = 50;
 
 void move_forward() {
-    motor_left->setSpeed(40);
-    motor_right->setSpeed(40);
+    motor_left->setSpeed(50);
+    motor_right->setSpeed(50);
     motor_left->run(FORWARD);
     motor_right->run(BACKWARD);
 }
@@ -59,28 +59,9 @@ void anticlockwise_90() {
     motor_left->setSpeed(50);
     motor_right->setSpeed(0);
     motor_left->run(BACKWARD);
-    unsigned long startturn = millis();
-    while (true) {
-      unsigned long currentMillis = millis();
-      if (currentMillis - startturn >= timedelay) {
-        //turn LED off?
-        break
-      }
-      else if (currentMillis - previousMillis >= 500) {
-            previousMillis = currentMillis;
+    delay_with_LEDs(timedelay);
 
-      }
-      //need to factor in which led is on - flashing orange, flashing red, continuous orange
-    }
-    //measure millis at time
-    //while loop less than delay time
-    //if millis 0.5 s from last change
-    //flip input
-    if (ledState == LOW) {
-      ledState = HIGH;
-    } else {
-      ledState = LOW;
-    }
+
 }
 
 void stop_motors() {
