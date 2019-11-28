@@ -11,19 +11,21 @@ void setup() {
     LED_setup(); // LED_state - what format - needs 3 states? (flashing orange, flashing red, solid orange)
     front_ultrasonic_setup();
     mine_counter = 0;
-//    initial_movement();
+    initial_movement();
 }
 
 void loop() {
-      if (mine_counter == 0) {
-//        move_forward();
+    if (mine_counter == 0) {
+        move_forward();
         while (true) {
             detect_mine();
             actual_detect(5);
-                if (mine_detected){
-                    break;
-                }
+            if (mine_detected) {
+                break;
+            }
         }
+        stop_motors();
+
         // detect mine orientation 
         // flip / grip mine
 
@@ -37,17 +39,8 @@ void loop() {
 
     }
 }
-    move_forward();
-    while (true) {
-      detect_mine();
-//    while (old_mine_distance > 80 && new_mine_distance > 80) {
-//        detect_mine();
-    }
-//        stop_motors();
 
-    }
-//    stop_motors();
-//    delay(1000000);
+
 //}
 //}
 //     check_mine_forward();
