@@ -3,7 +3,7 @@ void initial_movement() {
     move_distance_backward(10);
     move_distance_forward(10);
     anticlockwise_90();
-    move_distance_backward(20);
+    move_distance_backward(20); //check Friday if this actually means we're on the line - is a microswitch necessary?
     }
 
 // This is after the robot gripped the mine, it should go all the way back to wall 1 and home there once, then return to station

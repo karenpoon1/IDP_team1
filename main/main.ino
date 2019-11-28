@@ -15,8 +15,6 @@ void setup() {
     AFMS.begin(); // Setup motor
     Serial.begin (9600); // Don't really need at last
     servo_setup();
-    //pinMode (orangepin, OUTPUT);
-    //pinMode (redpin, OUTPUT);
     LED_setup(); // LEDs initialized
     front_ultrasonic_setup();
     mine_counter = 0;

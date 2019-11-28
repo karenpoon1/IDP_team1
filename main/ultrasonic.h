@@ -11,7 +11,7 @@ bool mine_detected = false;
 void front_ultrasonic_setup() {
     pinMode(trigPin, OUTPUT);
     pinMode(echoPin, INPUT);
-    pinMode(led_red, OUTPUT);// Do we need these LEDs
+    pinMode(led_red, OUTPUT);// Do we need these LEDs - not really, ask electronics how to remove
     pinMode(led_white, OUTPUT);
 }
 
