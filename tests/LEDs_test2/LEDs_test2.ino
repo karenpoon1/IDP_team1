@@ -1,7 +1,7 @@
 
 // constants won't change. Used here to set a pin number:
-const int orangePin =  13;// the number of the LED pin
-const int redPin = 12;
+const int orangepin =  13;// the number of the LED pin
+const int redpin = 12;
 
 // Variables will change:
 int orangeState = LOW;  // orangeState used to set the LED
@@ -18,8 +18,8 @@ int ledtype = 1;
 int delaytime = 5000;
 void setup() {
   // set the digital pin as output:
-  pinMode(orangePin, OUTPUT);
-  pinMode(redPin, OUTPUT);
+  pinMode(orangepin, OUTPUT);
+  pinMode(redpin, OUTPUT);
 }
 
 void loop() {
@@ -29,6 +29,18 @@ void loop() {
   ledtime (delaytime);
   ledtype = 2;
   ledtime (delaytime);
+  unsigned long blinktime;
+  ledtype = 1;
+  for (int i = 0; i <= 5000; i++){
+    if (i = 0){
+      unsigned long millisnow = millis();
+      blinktime = LED_call(millisnow);
+    }
+    else {
+      blinktime = LED_call(blinktime);
+    }
+    delay(10);
+  }
   //delay(2000);
   //ledtype = 1;
   //ledtime (timestart);
