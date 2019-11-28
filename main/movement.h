@@ -1,6 +1,7 @@
 #include <Wire.h>
 #include <Adafruit_MotorShield.h>
 #include "utility/Adafruit_MS_PWMServoDriver.h"
+void delay_with_LEDs(int starttime);
 
 Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 Adafruit_DCMotor *motor_left = AFMS.getMotor(1);
@@ -25,7 +26,7 @@ void move_distance_forward(int desired_distance) {
     motor_right->setSpeed(speed);
     motor_left->run(FORWARD);
     motor_right->run(BACKWARD);
-    delay(time);
+    delay_with_LEDs(time);
 }
 void move_backward() {
     motor_left->setSpeed(50);
@@ -44,14 +45,14 @@ void move_distance_backward(int desired_distance) {
     motor_right->setSpeed(speed);
     motor_left->run(BACKWARD);
     motor_right->run(FORWARD);
-    delay(time);
+    delay_with_LEDs(time);
 }
 
 void clockwise_90() {
     motor_left->setSpeed(50);
     motor_right->setSpeed(0);
     motor_left->run(FORWARD);
-    delay(13000);
+    delay_with_LEDs(13000);
 }
 
 void anticlockwise_90() {
@@ -68,6 +69,22 @@ void stop_motors() {
     motor_left->setSpeed(0);
     motor_right->setSpeed(0);
     //delay(100000); delay for tests only
+}
+
+void flip_mine() {
+  //something to do with small motor here
+}
+
+void backflip_mine() {
+  //reverse of flip mine here
+}
+
+void lift_grabber() {
+  //lift the mine a bit
+}
+
+void lower_grabber() {
+  //opposite of lift mine here
 }
 //make this proper end - add return to starting box section, then stop
 void endrun(void) {

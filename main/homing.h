@@ -1,7 +1,7 @@
 void homing_wall_left() {
-    move_backward(10);
+    move_distance_backward(10);
 }
 
 void homing_wall_back() {
-    move_backward(20);
+    move_distance_backward(20);
 }
