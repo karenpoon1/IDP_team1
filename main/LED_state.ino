@@ -39,3 +39,24 @@ void delay_with_LEDs (int starttime) {
     }
   }
 }
+
+unsigned long LED_call (unsigned long previousMillis) {//takes time of previous blink - first call in function seperately defined?
+  unsigned long currentMillis = millis();//measures current time
+  if (ledtype == 2) {//solid orange light (mine detected)
+      digitalWrite(redPin, LOW);
+      digitalWrite(orangePin, HIGH);
+    }
+  if (currentMillis - previousMillis >= interval) {
+    previousMillis = currentMillis;//update this if blink happens, essentially
+    if (ledtype == 1) {//flashing orange light (normal movement)
+      orangeState = !orangeState;
+      digitalWrite(orangePin, orangeState);
+      digitalWrite(redPin, LOW);
+    }
+    else if (ledtype == 3) {//flashing red light (transporting mine)
+      redState = !redState;
+      digitalWrite(redPin, redState);
+      digitalWrite (orangePin, LOW); 
+    }
+    return previousMillis;//changed if blink happened, otherwise same as input value
+}
