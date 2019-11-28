@@ -62,7 +62,6 @@ void anticlockwise_90() {
     motor_left->run(BACKWARD);
     delay_with_LEDs(timedelay);
 
-
 }
 
 void stop_motors() {
