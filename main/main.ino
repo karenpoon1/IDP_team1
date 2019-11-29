@@ -1,15 +1,12 @@
 #include "movement.h"
 #include "ultrasonic.h"
-//#include "initial_movement.h" - this doesn't currently exist
 #include "LED_state.h"
 #include "servo.h"
 #include "homing.h"
 #include "movement_set.h"
 #include "pickup_dropoff.h"
-//#include "side_ultrasonic.h"
 
 int mine_counter;
-
 
 void setup() {
     AFMS.begin(); // Setup motor
@@ -19,12 +16,13 @@ void setup() {
     front_ultrasonic_setup();
     mine_counter = 0;
     initial_movement();
+    delay(100000);
 }
 
 void loop() {
     if (mine_counter == 0) {
         // now robot is facing direction towards the known mine so it moves forward
-        move_forward();
+        move_forward(100);
         // while loop to detect mine in front, and will stop when mine is ___ cm in front (the distance in front is set by
         // the argument in the "actual detect()" function)
         while (true) {
@@ -35,6 +33,7 @@ void loop() {
             }
         }
         stop_motors();
+        delay(100000);
     }
         // the following is supposed to be a mine pole detection function and mine gripping function, which have to be written
         // detect_mine_orientation();
