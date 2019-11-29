@@ -9,12 +9,13 @@ void pickupmine() {
   //if its north, orientation = 0
   //if its south, orienntation = 1
   //then close jaws all the way - check what this is to hold it firmly
+  backflip_mine();
   servo_grab();
   if (orientation = 1) {
     flip_mine();//if orientation = south, flip (small_motor)
   }
   else {
-    lift_grabber();//else lift it a bit? so it's not blocking the sensor?
+    //lift_grabber();//else lift it a bit? so it's not blocking the sensor?
   }
   ledtype = 3;//change light state to blinking red
   //mine has been picked up!
@@ -26,12 +27,13 @@ void dropoffmine() {
     backflip_mine();
   }
   else {
-    lower_grabber();
+    //lower_grabber();
   }
   orientation = 0;//set orientation = 0 again
   servo_release();
   //return servo to 0 degrees - or reverse
   ledtype = 1;//change light state to blinking orange
-  lift_grabber();//lift grabber a bit (if possible)  
+  flip_mine();
+  //lift_grabber();//lift grabber a bit (if possible)  
   //mine has been dropped!
 }

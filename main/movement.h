@@ -78,14 +78,6 @@ void backflip_mine() {
   //reverse of flip mine here
 }
 
-void lift_grabber() {
-  //lift the mine a bit
-}
-
-void lower_grabber() {
-  //opposite of lift mine here
-  //don't think this is an option - default position flipped back?
-}
 //make this proper end - add return to starting box section, then stop
 void endrun(void) {
   //stop all programming
