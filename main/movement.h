@@ -25,6 +25,7 @@ void move_distance_forward(int speed, int desired_distance) {
     motor_right->setSpeed(speed);
     motor_left->run(FORWARD);
     motor_right->run(BACKWARD);
+    delay(time);
 //    delay_with_LEDs(time);
 }
 
@@ -45,21 +46,25 @@ void move_distance_backward(int speed, int desired_distance) {
     motor_right->setSpeed(speed);
     motor_left->run(BACKWARD);
     motor_right->run(FORWARD);
+    delay(time);
 //    delay_with_LEDs(time);
 }
 
 void clockwise_90() {
-    motor_left->setSpeed(50);
+    int timedelay = 5200;
+    motor_left->setSpeed(100);
     motor_right->setSpeed(0);
     motor_left->run(FORWARD);
+    delay(timedelay);    
 //    delay_with_LEDs(13000);
 }
 
 void anticlockwise_90() {
-    int timedelay = 13000;
-    motor_left->setSpeed(50);
+    int timedelay = 5200;
+    motor_left->setSpeed(100);
     motor_right->setSpeed(0);
     motor_left->run(BACKWARD);
+    delay(timedelay);
 //    delay_with_LEDs(timedelay);
 
 }

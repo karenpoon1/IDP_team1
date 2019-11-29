@@ -1,9 +1,10 @@
 // When car is at start position, it homes with two walls at the corner, and ends up facing the direction towards the known mine
 void initial_movement() {
-    move_distance_backward(100, 10);
-    move_distance_forward(100, 10);
-    anticlockwise_90();
     move_distance_backward(100, 20);
+    // 65 comes from required 50 from table, and half of robot size
+    move_distance_forward(100, 65);
+    anticlockwise_90();
+    move_distance_backward(100, 10);
     }
 
 // This is after the robot gripped the mine, it should go all the way back to wall 1 and home there once, then return to station

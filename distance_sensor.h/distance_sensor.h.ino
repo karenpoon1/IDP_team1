@@ -7,8 +7,8 @@ void setup() {
     Serial.begin (9600);
     pinMode(trigPin, OUTPUT);
     pinMode(echoPin, INPUT);
-    pinMode(led_red, OUTPUT);
-    pinMode(led_green, OUTPUT);
+//     pinMode(led_red, OUTPUT);
+//     pinMode(led_green, OUTPUT);
 }
 
 void loop() {
@@ -20,14 +20,14 @@ void loop() {
     digitalWrite(trigPin, LOW);
     duration = pulseIn(echoPin, HIGH);
     distance = (duration/2) / 29.1; // Assume speed of sound 340m/s
-    if (distance < 4) {  // This is where the LED On/Off happens
-        digitalWrite(led_red,HIGH); // When the Red condition is met, the Green LED should turn off
-        digitalWrite(led_green,LOW);
-    }
-    else {
-        digitalWrite(led_red,LOW);
-        digitalWrite(led_green,HIGH);
-    }
+//     if (distance < 4) {  // This is where the LED On/Off happens
+//         digitalWrite(led_red,HIGH); // When the Red condition is met, the Green LED should turn off
+//         digitalWrite(led_green,LOW);
+//     }
+//     else {
+//         digitalWrite(led_red,LOW);
+//         digitalWrite(led_green,HIGH);
+//    }
     if (distance >= 200 || distance <= 0){
         Serial.println("Out of range");
     }
