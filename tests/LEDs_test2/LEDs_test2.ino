@@ -31,7 +31,7 @@ void loop() {
   ledtime (delaytime);
   unsigned long blinktime;
   ledtype = 1;
-  for (int i = 0; i <= 5000; i++){
+  for (int i = 0; i <= 500; i++){
     if (i = 0){
       unsigned long millisnow = millis();
       blinktime = LED_call(millisnow);
@@ -41,8 +41,8 @@ void loop() {
     }
     delay(10);
   }
-  //delay(2000);
-  //ledtype = 1;
-  //ledtime (timestart);
+  delay(2000);
+  ledtype = 2;
+  ledtime (delaytime);
   // set the LED with the orangeState of the variable:
 }

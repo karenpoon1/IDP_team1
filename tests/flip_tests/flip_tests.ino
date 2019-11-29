@@ -5,6 +5,8 @@
 #include "servo.h"
 //void delay_with_LEDs(int starttime);
 
+//ledtype = 1;
+
 Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 Adafruit_DCMotor *motor_flip = AFMS.getMotor(1);
 
@@ -38,20 +40,19 @@ void lower_mine() {
 void setup() {
   AFMS.begin(); // Setup motor
   servo_setup();
-  delay(5000);
+  delay_with_LEDs(5000);
   servo_grab();
 }
 
 void loop() {
-  ledtype = 1;
   backflip_mine();
-  delay(5000);
+  delay_with_LEDs(5000);
   flip_mine();
-  delay(5000);
+  delay_with_LEDs(5000);
   lift_mine();
-  delay(5000);
+  delay_with_LEDs(5000);
   lower_mine();
-  delay(5000);
+  delay_with_LEDs(5000);
   //delay(10000);
   
   // put your main code here, to run repeatedly:
