@@ -1,10 +1,10 @@
 #include "utility/Adafruit_MS_PWMServoDriver.h"
 #include <Servo.h> 
 int angle = 0;//current servo angle
+int servoPin = 9;
+Servo servo;
 
 void servo_setup() {
-    int servoPin = 9;
-    Servo servo;
     servo.attach(servoPin);
     for(angle = 0; angle < 75; angle++)  {                                  
         servo.write(angle);               
