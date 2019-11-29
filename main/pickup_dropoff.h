@@ -7,7 +7,7 @@ void pickupmine() {
   //lower_grabber();
   //both hall sensors are +ve? - get closer until 1 is referenced
   //if its north, orientation = 0
-  //if its south, orienntation = 1
+  //if its south, orientation = 1
   //then close jaws all the way - check what this is to hold it firmly
   backflip_mine();
   servo_grab();
@@ -15,7 +15,7 @@ void pickupmine() {
     flip_mine();//if orientation = south, flip (small_motor)
   }
   else {
-    //lift_grabber();//else lift it a bit? so it's not blocking the sensor?
+    //lift_grabber();//else lift it a bit? so it's not blocking the sensor? - this probably isnt possible
   }
   ledtype = 3;//change light state to blinking red
   //mine has been picked up!
