@@ -12,7 +12,7 @@ void move_forward(int speed) {
     motor_left->setSpeed(speed);
     motor_right->setSpeed(speed);
     motor_left->run(FORWARD);
-    motor_right->run(BACKWARD);
+    motor_right->run(FORWARD);
 }
 
 void move_distance_forward(int speed, int desired_distance) {
@@ -24,7 +24,7 @@ void move_distance_forward(int speed, int desired_distance) {
     motor_left->setSpeed(speed);
     motor_right->setSpeed(speed);
     motor_left->run(FORWARD);
-    motor_right->run(BACKWARD);
+    motor_right->run(FORWARD);
     delay(time);
 //    delay_with_LEDs(time);
 }
@@ -33,7 +33,7 @@ void move_backward(int speed) {
     motor_left->setSpeed(speed);
     motor_right->setSpeed(speed);
     motor_left->run(BACKWARD);
-    motor_right->run(FORWARD);
+    motor_right->run(BACKWARD);
 }
 
 void move_distance_backward(int speed, int desired_distance) {
@@ -45,9 +45,45 @@ void move_distance_backward(int speed, int desired_distance) {
     motor_left->setSpeed(speed);
     motor_right->setSpeed(speed);
     motor_left->run(BACKWARD);
-    motor_right->run(FORWARD);
+    motor_right->run(BACKWARD);
     delay(time);
 //    delay_with_LEDs(time);
+}
+
+void about_robot_clockwise_90() {
+    int timedelay = 2590;
+    motor_left->setSpeed(100);
+    motor_right->setSpeed(100);
+    motor_left->run(FORWARD);
+    motor_right->run(BACKWARD);
+    delay(timedelay);
+}
+
+void about_robot_anticlockwise_90() {
+    int timedelay = 2590;
+    motor_left->setSpeed(100);
+    motor_right->setSpeed(100);
+    motor_left->run(BACKWARD);
+    motor_right->run(FORWARD);
+    delay(timedelay);
+}
+
+void about_robot_clockwise_45() {
+    int timedelay = 1295;
+    motor_left->setSpeed(100);
+    motor_right->setSpeed(100);
+    motor_left->run(FORWARD);
+    motor_right->run(BACKWARD);
+    delay(timedelay);
+}
+
+void about_robot_anticlockwise_45() {
+    int timedelay = 1295;
+    motor_left->setSpeed(100);
+    motor_right->setSpeed(100);
+    motor_left->run(BACKWARD);
+    motor_right->run(FORWARD);
+    delay(timedelay);
 }
 
 void clockwise_90() {

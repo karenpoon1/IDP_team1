@@ -1,7 +1,7 @@
 #define trigPin 12 //send waves
 #define echoPin 13 //receive waves
-#define led_red 11
-#define led_green 10
+//#define led_red 11
+//#define led_green 10
 
 void setup() {
     Serial.begin (9600);
@@ -28,12 +28,12 @@ void loop() {
 //         digitalWrite(led_red,LOW);
 //         digitalWrite(led_green,HIGH);
 //    }
-    if (distance >= 200 || distance <= 0){
-        Serial.println("Out of range");
-    }
-    else {
+//    if (distance >= 200 || distance <= 0){
+//        Serial.println("Out of range");
+//    }
+//    else {
         Serial.print(distance);
         Serial.println(" cm");
-    }
+//    }
     delay(500);
 }

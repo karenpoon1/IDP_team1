@@ -9,6 +9,7 @@
 
 
 int mine_counter;
+int mine_distances; //calibrated values in an array
 
 void setup() {
     AFMS.begin(); // Setup motor
@@ -18,7 +19,10 @@ void setup() {
     front_ultrasonic_setup();
     mine_counter = 0;
     initial_movement();
-    delay(100000);
+//    move_distance_backward(100,30);
+//    about_robot_clockwise_90();
+//    stop_motors();
+//    delay(1000000);
 }
 
 void loop() {
@@ -31,22 +35,51 @@ void loop() {
             detect_mine();
             actual_detect(5);
             if (mine_detected) {
+                mine_detected = false
                 break;
             }
         }
         stop_motors();
-        delay(100000);
-    }
-        // the following is supposed to be a mine pole detection function and mine gripping function, which have to be written
+
+        delay(100000); // for testing only
+        // flip gripper arm in place
         // detect_mine_orientation();
         // if oriented correctly
-        // flip_mine();
+            // flip_mine();
         // grip_mine();
-        // after_grip_movement(); (in movement_set.h)
-
-    // following navigation sequences are to be added
-    if (mine_counter > 0 && mine_counter < 7) {
+        move_forward(100);
         while (true) {
+            detect_mine(); //detect wall
+            actual_detect(15);
+            if (mine_detected) { //if wall detected
+                mine_detected = false
+                break;
+            }
+        }
+        about_robot_anticlockwise_45();
+        // drop_mine(); then gripper arm return to rest position
+        about_robot_clockwise_45();
+
+        // homing to front wall
+        about_robot_clockwise_90();
+        move_distance_backward(100, 60);
+        move_distance_forward(100, 50);
+
+        move_distance_forward(100, mine_distances[mine_counter];
+
+        // homing to left wall
+        about_robot_clockwise_90();
+        move_distance_backward(100, 40);
+    }
+    // following navigation sequences are to be added
+    else if (mine_counter > 0 && mine_counter < 7) {
+        move_forward(50);
+        while (true) {
+            detect_mine(); //detect wall
+            actual_detect(15);
+            if (mine_detected) { //if wall detected
+                mine_detected = false
+                break;
             }
     }
     mine_counter++;

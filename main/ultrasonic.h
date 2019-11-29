@@ -1,18 +1,21 @@
 
-#define trigPin 12 // Send waves
-#define echoPin 13 // Receive waves
-#define led_red 10
-#define led_white 11
+// front ultrasonic sensor
+#define front_trigPin 12 // Send waves
+#define front_echoPin 13 // Receive waves
+
+// side ultrasonic sensor
+#define side_trigPin 10
+#define side_echoPin 11
 
 long distance = 0;
 long prev_mine_distance = 0;
 bool mine_detected = false;
 
 void front_ultrasonic_setup() {
-    pinMode(trigPin, OUTPUT);
-    pinMode(echoPin, INPUT);
-    pinMode(led_red, OUTPUT);// Do we need these LEDs - not really, ask electronics how to remove
-    pinMode(led_white, OUTPUT);
+    pinMode(front_trigPin, OUTPUT);
+    pinMode(front_echoPin, INPUT);
+    pinMode(side_trigPin, OUTPUT);
+    pinMode(side_echoPin, INPUT);
 }
 
 void detect_mine() {
