@@ -15,6 +15,7 @@ void pickupmine() {
     flip_mine();//if orientation = south, flip (small_motor)
   }
   else {
+    lift_mine();
     //lift_grabber();//else lift it a bit? so it's not blocking the sensor? - this probably isnt possible
   }
   ledtype = 3;//change light state to blinking red
@@ -27,6 +28,7 @@ void dropoffmine() {
     backflip_mine();
   }
   else {
+    lower_mine();
     //lower_grabber();
   }
   orientation = 0;//set orientation = 0 again
