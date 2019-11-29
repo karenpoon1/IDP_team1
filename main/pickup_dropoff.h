@@ -4,11 +4,12 @@ int orientation = 0; //let's have 0 = north, 1 = south - can I use the same for 
 
 void pickupmine() {
   //assuming reasonable distance from mine which is basically in front
-  lower_grabber();
+  //lower_grabber();
   //both hall sensors are +ve? - get closer until 1 is referenced
   //if its north, orientation = 0
   //if its south, orienntation = 1
   //then close jaws all the way - check what this is to hold it firmly
+  servo_grab();
   if (orientation = 1) {
     flip_mine();//if orientation = south, flip (small_motor)
   }
@@ -28,6 +29,7 @@ void dropoffmine() {
     lower_grabber();
   }
   orientation = 0;//set orientation = 0 again
+  servo_release();
   //return servo to 0 degrees - or reverse
   ledtype = 1;//change light state to blinking orange
   lift_grabber();//lift grabber a bit (if possible)  

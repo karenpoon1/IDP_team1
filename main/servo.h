@@ -6,19 +6,23 @@ void servo_setup() {
     int servoPin = 9;
     Servo servo;
     servo.attach(servoPin);
+    for(angle = 0; angle < 75; angle++)  {                                  
+        servo.write(angle);               
+        delay(15);                   
+    } 
 }
 
-void servo_forward (int inputangle) {
-    for(angle = 0; angle < inputangle; angle++) {
-        Servo servo;
+void servo_release () {
+    for(angle = 20; angle < 75; angle++) {
+        //Servo servo;
         servo.write(angle);
         delay(15);                   
     }
 }
 
-void servo_backward (int inputangle) {
-    for(angle = inputangle; angle > 0; angle--) {
-        Servo servo;
+void servo_grab () {
+    for(angle = 75; angle > 20; angle--) {
+        //Servo servo;
         servo.write(angle);           
         delay(15);                               
     }
