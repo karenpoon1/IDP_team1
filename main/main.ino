@@ -17,6 +17,7 @@ void setup() {
     servo_setup();
     LED_setup(); // LEDs initialized
     front_ultrasonic_setup();
+    side_ultrasonic_setup();
     mine_counter = 0;
     initial_movement();
 //    move_distance_backward(100,30);
@@ -32,32 +33,36 @@ void loop() {
         // while loop to detect mine in front, and will stop when mine is ___ cm in front (the distance in front is set by
         // the argument in the "actual detect()" function)
         while (true) {
-            detect_mine();
+            detect_front();
             actual_detect(5);
-            if (mine_detected) {
-                mine_detected = false
+            if (mine_wall_detected) {
+                mine_wall_detected = false
                 break;
             }
         }
         stop_motors();
 
         delay(100000); // for testing only
+
         // flip gripper arm in place
         // detect_mine_orientation();
         // if oriented correctly
             // flip_mine();
         // grip_mine();
+
         move_forward(100);
         while (true) {
-            detect_mine(); //detect wall
+            detect_front(); //detect wall
             actual_detect(15);
-            if (mine_detected) { //if wall detected
-                mine_detected = false
+            if (mine_wall_detected) { //if wall detected
+                mine_wall_detected = false
                 break;
             }
         }
         about_robot_anticlockwise_45();
+
         // drop_mine(); then gripper arm return to rest position
+        
         about_robot_clockwise_45();
 
         // homing to front wall
@@ -65,6 +70,7 @@ void loop() {
         move_distance_backward(100, 60);
         move_distance_forward(100, 50);
 
+        // moving towards mine in forward direction only
         move_distance_forward(100, mine_distances[mine_counter];
 
         // homing to left wall
@@ -75,8 +81,8 @@ void loop() {
     else if (mine_counter > 0 && mine_counter < 7) {
         move_forward(50);
         while (true) {
-            detect_mine(); //detect wall
-            actual_detect(15);
+            detect_side(); //detect wall
+            mine_detect(15);
             if (mine_detected) { //if wall detected
                 mine_detected = false
                 break;

@@ -7,54 +7,83 @@
 #define side_trigPin 10
 #define side_echoPin 11
 
-long distance = 0;
-long prev_mine_distance = 0;
+long curr_front_distance = 0;
+long prev_front_distance = 0;
+bool mine_wall_detected = false;
+
+long curr_side_distance = 0;
+long prev_side_distance = 0;
 bool mine_detected = false;
 
 void front_ultrasonic_setup() {
     pinMode(front_trigPin, OUTPUT);
     pinMode(front_echoPin, INPUT);
+}
+
+void side_ultrasonic_setup() {
     pinMode(side_trigPin, OUTPUT);
     pinMode(side_echoPin, INPUT);
 }
 
-void detect_mine() {
+void detect_front() {
     long duration;
-    prev_mine_distance = distance;
-    digitalWrite(trigPin, LOW);
+    prev_front_distance = curr_front_distance;
+    digitalWrite(front_trigPin, LOW);
     delayMicroseconds(2);
-    digitalWrite(trigPin, HIGH);
+    digitalWrite(front_trigPin, HIGH);
     delayMicroseconds(10);
-    digitalWrite(trigPin, LOW);
-    duration = pulseIn(echoPin, HIGH);
-    distance = (duration/2) / 29.1; // Assume speed of sound 340m/s
+    digitalWrite(front_trigPin, LOW);
+    duration = pulseIn(front_echoPin, HIGH);
+    curr_front_distance = (duration/2) / 29.1; // Assume speed of sound 340m/s
 }
 
 void actual_detect(int thresh_from_mine) {
-    if (prev_mine_distance == 0 || distance == 0) {
-        digitalWrite(led_red,LOW);
-        digitalWrite(led_white,LOW);
+    if (prev_front_distance == 0 || curr_front_distance == 0) {
+        continue;
     }
-    else if (prev_mine_distance < thresh_from_mine && distance < thresh_from_mine) {
+    else if (prev_front_distance < thresh_from_mine && curr_front_distance < thresh_from_mine) {
         stop_motors();
-        digitalWrite(led_red,HIGH);
-        digitalWrite(led_white,LOW);
-        mine_detected = true;
+        mine_wall_detected = true;
     }
     else {
-        digitalWrite(led_red,LOW);
-        digitalWrite(led_white,HIGH);
+        continue;
     }
 
     // Serial Monitor output
-    if (distance >= 200 || distance <= 0){
+    if (curr_front_distance >= 200 || curr_front_distance <= 0){
         Serial.println("Out of range");
     }
     else {
-        Serial.print(distance);
+        Serial.print(curr_front_distance);
         Serial.println(" cm");
     }
     
+    delay(500);
+}
+
+void detect_side() {
+    long duration;
+    prev_side_distance = curr_side_distance;
+    digitalWrite(side_trigPin, LOW);
+    delayMicroseconds(2);
+    digitalWrite(side_trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(side_trigPin, LOW);
+    duration = pulseIn(side_echoPin, HIGH);
+    curr_side_distance = (duration/2) / 29.1; // Assume speed of sound 340m/s
+}
+
+void mine_detect(int thresh_from_mine) {
+    if (prev_side_distance == 0 || curr_side_distance == 0) {
+        continue;
+    }
+    else if (prev_side_distance < thresh_from_mine && curr_side_distance < thresh_from_mine) {
+        stop_motors();
+        mine_detected = true;
+    }
+    else {
+        continue;
+    }
     delay(500);
 }
 
@@ -73,21 +102,4 @@ void actual_detect(int thresh_from_mine) {
 //        counter++
 //        delay(10)
 //
-//}
-//
-
-//void goto_mine() {
-//
-////    else {
-////        digitalWrite(led_red,LOW);
-////        digitalWrite(led_green,HIGH);
-////    }
-////    if (distance >= 200 || distance <= 0){
-////        Serial.println("Out of range");
-////    }
-////    else {
-////        Serial.print(distance);
-////        Serial.println(" cm");
-////    }
-////    delay(500);
 //}
