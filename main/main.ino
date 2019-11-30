@@ -7,7 +7,6 @@
 #include "grabber.h"
 #include "pickup_dropoff.h"
 
-
 int mine_counter;
 int mine_distances; //calibrated values in an array
 
@@ -15,11 +14,12 @@ void setup() {
     AFMS.begin(); // Setup motor
     Serial.begin (9600); // Don't really need at last
     servo_setup();
-    LED_setup(); // LEDs initialized
+    LED_setup(); // LEDs initialised
     front_ultrasonic_setup();
     side_ultrasonic_setup();
     mine_counter = 0;
     initial_movement();
+
 //    move_distance_backward(100,30);
 //    about_robot_clockwise_90();
 //    stop_motors();
@@ -62,7 +62,8 @@ void loop() {
         about_robot_anticlockwise_45();
 
         // drop_mine(); then gripper arm return to rest position
-        
+
+        // the following sequence is robot homing with walls, then going towards the first mine to picked, hardcode!
         about_robot_clockwise_45();
 
         // homing to front wall
@@ -90,7 +91,6 @@ void loop() {
     }
     mine_counter++;
 }
-
 
 // the following, im thinking how to check mine forward, but am thinking of a better algorithm which i will discuss with you later
 //}
