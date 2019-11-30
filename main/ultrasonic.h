@@ -42,8 +42,9 @@ void actual_detect(int thresh_from_mine) {
         continue;
     }
     else if (prev_front_distance < thresh_from_mine && curr_front_distance < thresh_from_mine) {
-        stop_motors();
         mine_wall_detected = true;
+        prev_front_distance = 0;
+        curr_front_distance = 0;
     }
     else {
         continue;
@@ -78,8 +79,9 @@ void mine_detect(int thresh_from_mine) {
         continue;
     }
     else if (prev_side_distance < thresh_from_mine && curr_side_distance < thresh_from_mine) {
-        stop_motors();
         mine_detected = true;
+        prev_front_distance = 0;
+        curr_front_distance = 0;
     }
     else {
         continue;

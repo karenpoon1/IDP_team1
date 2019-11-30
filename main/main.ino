@@ -32,7 +32,7 @@ void loop() {
         move_forward(100);
         // while loop to detect mine in front, and will stop when mine is ___ cm in front (the distance in front is set by
         // the argument in the "actual detect()" function)
-        while (true) {
+        while (true) { // change to counter so it doesnt enter an infinite loop
             detect_front();
             actual_detect(5);
             if (mine_wall_detected) {
@@ -51,7 +51,7 @@ void loop() {
         // grip_mine();
 
         move_forward(100);
-        while (true) {
+        while (true) { // change to counter so it doesnt enter an infinite loop
             detect_front(); //detect wall
             actual_detect(15);
             if (mine_wall_detected) { //if wall detected
@@ -59,6 +59,8 @@ void loop() {
                 break;
             }
         }
+        stop_motors();
+
         about_robot_anticlockwise_45();
 
         // drop_mine(); then gripper arm return to rest position
@@ -72,23 +74,81 @@ void loop() {
         move_distance_forward(100, 50);
 
         // moving towards mine in forward direction only
-        move_distance_forward(100, mine_distances[mine_counter];
+        move_distance_forward(100, mine_distances[mine_counter]);
 
         // homing to left wall
         about_robot_clockwise_90();
         move_distance_backward(100, 40);
     }
+
     // following navigation sequences are to be added
     else if (mine_counter > 0 && mine_counter < 7) {
         move_forward(50);
-        while (true) {
+        while (true) { // change to counter so it doesnt enter an infinite loop
             detect_side(); //detect wall
-            mine_detect(15);
+            mine_detect(25);
             if (mine_detected) { //if wall detected
                 mine_detected = false
                 break;
             }
-    }
+        }
+        stop_motors();
+
+        move_distance_forward(50,10); // arbitrary (or backward)
+
+        about_robot_anticlockwise_90();
+        detect_front();
+        detect_front();
+
+        if (curr_side_distance < 30) {
+            continue;
+        else {
+            // check or go home
+        }
+
+        move_forward(50);
+        while (true) { // change to counter so it doesnt enter an infinite loop
+            detect_front(); //detect wall
+            mine_wall_detect(8);
+            if (mine_wall_detected) { //if wall detected
+                mine_wall_detected = false
+                break;
+            }
+        }
+        stop_motors();
+        // flip gripper arm in place
+        // detect_mine_orientation();
+        // if oriented correctly
+            // flip_mine();
+        // grip_mine();
+
+        move_distance_backward(100, mine_distances[mine_counter-1] + 60);
+        move_distance_forward(100, 50);
+        about_robot_anticlockwise_90();
+        move_forward(50);
+        while (true) { // change to counter so it doesnt enter an infinite loop
+            detect_front(); //detect wall
+            mine_wall_detect(30);
+            if (mine_wall_detected) { //if wall detected
+                mine_wall_detected = false
+                break;
+            }
+        }
+        stop_motors();
+        about_robot_anticlockwise_45();
+        // drop mine();
+        about_robot_clockwise_45();
+        about_robot_clockwise_90();
+        move_distance_backward(100, 60);
+        move_distance_forward(100, 50);
+
+        // moving towards mine in forward direction only
+        move_distance_forward(100, mine_distances[mine_counter]);
+
+        // homing to left wall
+        about_robot_clockwise_90();
+        move_distance_backward(100, 40);
+
     mine_counter++;
 }
 
