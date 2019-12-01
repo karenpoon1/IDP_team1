@@ -3,8 +3,8 @@ int orientation = 0; //let's have 0 = north, 1 = south - can I use the same for 
 //so when its referenced in the drop off function, it can be used to assume whether it was flipped
 
 void pickupmine() {
-  //assuming reasonable distance from mine which is basically in front
-  //lower_grabber();
+  digitalWrite(redpin, LOW);//solid orange light
+  digitalWrite(orangepin, HIGH);
   //both hall sensors are +ve? - get closer until 1 is referenced
   //if its north, orientation = 0
   //if its south, orientation = 1
@@ -18,6 +18,7 @@ void pickupmine() {
     lift_mine();
     //lift_grabber();//else lift it a bit? so it's not blocking the sensor? - this probably isnt possible
   }
+  digitalWrite(orangepin, LOW);
   ledtype = 3;//change light state to blinking red
   //mine has been picked up!
 }
