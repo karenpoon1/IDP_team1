@@ -9,6 +9,7 @@
 
 int mine_counter;
 int mine_distances; //calibrated values in an array
+unsigned long previousmillis;
 
 void setup() {
     AFMS.begin(); // Setup motor
@@ -32,13 +33,13 @@ void loop() {
         move_forward(100);
         // while loop to detect mine in front, and will stop when mine is ___ cm in front (the distance in front is set by
         // the argument in the "actual detect()" function)
-        unsigned long previousmillis = millis();//needed for LEDs
+        previousmillis = millis();//needed for LEDs
         while (true) { // change to counter so it doesnt enter an infinite loop
             detect_front();
             actual_detect(5);
             previousmillis = LED_call(previousmillis);//LED blinking
             if (mine_wall_detected) {
-                mine_wall_detected = false
+                mine_wall_detected = false;
                 break;
             }
         }
@@ -54,7 +55,7 @@ void loop() {
             previousmillis = LED_call(previousmillis);
             actual_detect(15);
             if (mine_wall_detected) { //if wall detected
-                mine_wall_detected = false
+                mine_wall_detected = false;
                 break;
             }
         }
@@ -74,7 +75,7 @@ void loop() {
         move_distance_forward(100, 50);
 
         // moving towards mine in forward direction only
-        move_distance_forward(100, mine_distances[mine_counter]);
+        //move_distance_forward(100, mine_distances[mine_counter]); it cant handle this atm
 
         // homing to left wall
         about_robot_clockwise_90();
@@ -90,7 +91,7 @@ void loop() {
             previousmillis = LED_call(previousmillis);
             mine_detect(25);
             if (mine_detected) { //if wall detected
-                mine_detected = false
+                mine_detected = false;
                 break;
             }
         }
@@ -104,6 +105,7 @@ void loop() {
 
         if (curr_side_distance < 30) {
             //continue; - commented out as this statement isn't in a loop
+        }
         else {
             // check or go home
         }
@@ -114,7 +116,7 @@ void loop() {
             detect_front(); //detect wall
             mine_wall_detect(8);
             if (mine_wall_detected) { //if wall detected
-                mine_wall_detected = false
+                mine_wall_detected = false;
                 break;
             }
         }
@@ -126,7 +128,7 @@ void loop() {
             // flip_mine();
         // grip_mine();
 
-        move_distance_backward(100, mine_distances[mine_counter-1] + 60);
+        move_distance_backward(100, mine_distances[mine_counter-1] + 60); //- it can't handle this atm
         move_distance_forward(100, 50);
         about_robot_anticlockwise_90();
         move_forward(50);
@@ -134,9 +136,9 @@ void loop() {
         while (true) { // change to counter so it doesnt enter an infinite loop
             previousmillis = LED_call(previousmillis);
             detect_front(); //detect wall
-            mine_wall_detect(30);
+            mine_wall_detect(30); //- what is this???
             if (mine_wall_detected) { //if wall detected
-                mine_wall_detected = false
+                mine_wall_detected = false;
                 break;
             }
         }
@@ -149,7 +151,7 @@ void loop() {
         move_distance_forward(100, 50);
 
         // moving towards mine in forward direction only
-        move_distance_forward(100, mine_distances[mine_counter]);
+        move_distance_forward(100, mine_distances[mine_counter]);// - it can't handle this atm
 
         // homing to left wall
         about_robot_clockwise_90();

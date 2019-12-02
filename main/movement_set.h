@@ -13,7 +13,7 @@ void initial_movement() {
 void after_grip_movement() {
     move_backward(100);
     while (true) {
-        detect_mine();
+        //detect_mine(); - not a defined function!
         actual_detect(10);
             //if (back_wall_detected) { - this is not a defined function!!!
                 //break;
@@ -22,7 +22,7 @@ void after_grip_movement() {
     move_distance_forward(100,10);
     clockwise_90();
     while (true) {
-        detect_mine();
+        //detect_mine(); - not a defined function!
         actual_detect(10);
             //if (back_wall_detected) { this is not a defined function!!!!
                 //break;

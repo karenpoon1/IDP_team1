@@ -39,7 +39,7 @@ void detect_front() {
 
 void actual_detect(int thresh_from_mine) {
     if (prev_front_distance == 0 || curr_front_distance == 0) {
-        continue;
+        return;
     }
     else if (prev_front_distance < thresh_from_mine && curr_front_distance < thresh_from_mine) {
         mine_wall_detected = true;
@@ -47,7 +47,7 @@ void actual_detect(int thresh_from_mine) {
         curr_front_distance = 0;
     }
     else {
-        continue;
+        return;
     }
 
     // Serial Monitor output
@@ -76,7 +76,7 @@ void detect_side() {
 
 void mine_detect(int thresh_from_mine) {
     if (prev_side_distance == 0 || curr_side_distance == 0) {
-        continue;
+        return;
     }
     else if (prev_side_distance < thresh_from_mine && curr_side_distance < thresh_from_mine) {
         mine_detected = true;
@@ -84,7 +84,7 @@ void mine_detect(int thresh_from_mine) {
         curr_front_distance = 0;
     }
     else {
-        continue;
+        return;
     }
     delay(500);
 }
