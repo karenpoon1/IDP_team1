@@ -81,10 +81,10 @@ void loop() {
         move_distance_backward(100, 40);
     }
     
-        delay(100000); // for testing only
+    delay(100000); // for testing only
         
     // following navigation sequences are to be added
-    else if (mine_counter > 0 && mine_counter < 7) {
+    if (mine_counter > 0 && mine_counter < 7) {
         move_forward(50);
         previousmillis = millis();
         while (true) { // change to counter so it doesnt enter an infinite loop

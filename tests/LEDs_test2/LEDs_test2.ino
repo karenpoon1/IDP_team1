@@ -1,7 +1,7 @@
 
 // constants won't change. Used here to set a pin number:
-const int orangepin =  7;// the number of the LED pin
-const int redpin = 6;
+const int orangepin =  6;// the number of the LED pin
+const int redpin = 7;
 
 // Variables will change:
 int orangeState = LOW;  // orangeState used to set the LED
