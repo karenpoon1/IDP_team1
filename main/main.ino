@@ -44,8 +44,7 @@ void loop() {
             }
         }
         stop_motors();
-        delay(100000); // for testing only
-        
+                
         pickupmine();
 
         move_forward(100);
@@ -81,7 +80,9 @@ void loop() {
         about_robot_clockwise_90();
         move_distance_backward(100, 40);
     }
-
+    
+        delay(100000); // for testing only
+        
     // following navigation sequences are to be added
     else if (mine_counter > 0 && mine_counter < 7) {
         move_forward(50);
