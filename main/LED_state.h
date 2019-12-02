@@ -1,5 +1,5 @@
-const int orangepin =  13;//change later - pins for LEDs
-const int redpin = 12;
+const int orangepin =  6;//change later - pins for LEDs
+const int redpin = 7;
 int orangeState = LOW;  // states used to set the LEDs
 int redState = LOW;
 unsigned long previousMillis = 0;        // will store last time LED was updated
