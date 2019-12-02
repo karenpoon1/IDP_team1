@@ -8,7 +8,7 @@
 #include "pickup_dropoff.h"
 
 int mine_counter;
-int mine_distances; //calibrated values in an array
+int mine_distances[8] = {100,100,100,100,100,100,100}; //calibrated values in an array
 unsigned long previousmillis;
 
 void setup() {
@@ -113,8 +113,7 @@ void loop() {
         move_forward(50);
         previousmillis = millis();
         while (true) { // change to counter so it doesnt enter an infinite loop
-            detect_front(); //detect wall
-            mine_wall_detect(8);
+            detect_front(); //detect wallmi            mine_wall_detect(8);
             if (mine_wall_detected) { //if wall detected
                 mine_wall_detected = false;
                 break;
@@ -136,7 +135,7 @@ void loop() {
         while (true) { // change to counter so it doesnt enter an infinite loop
             previousmillis = LED_call(previousmillis);
             detect_front(); //detect wall
-            mine_wall_detect(30); //- what is this???
+            actual_detect(30); //- what is this???
             if (mine_wall_detected) { //if wall detected
                 mine_wall_detected = false;
                 break;
@@ -159,15 +158,4 @@ void loop() {
 
     mine_counter++;
 }
-
-// the following, im thinking how to check mine forward, but am thinking of a better algorithm which i will discuss with you later
-//}
-//     check_mine_forward();
-//     mine_counter++
-//     if (mine_counter == 7) {
-//         anticlockwise_90();
-//         homing_wall_left();
-//         move_distance_forward(230);
-//         clockwise_90();
-//         move_distance_forward(20);
-//         // Return to start position
+}
