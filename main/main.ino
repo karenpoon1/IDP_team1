@@ -8,12 +8,28 @@
 #include "pickup_dropoff.h"
 
 int mine_counter;
-int mine_distances[8] = {100,100,100,100,100,100,100}; //calibrated values in an array
+int mine_distances[8]; //calibrated values in an array
 unsigned long previousmillis;
+int j = 0;
+long serIn;
 
 void setup() {
     AFMS.begin(); // Setup motor
-    Serial.begin (9600); // Don't really need at last
+    Serial.begin(9600); // Don't really need at last
+    delay(3000);
+    while(1) {
+    if(Serial.available() > 0) {
+        serIn=Serial.readString();
+        serIn.toInt();
+        mine_distances[j] = serIn;
+        j++;
+        if (Serial.available() == 0) {
+          break;
+    }
+    delay(1000);
+    }
+    
+    delay(1000000);
     servo_setup();
     LED_setup(); // LEDs initialised
     front_ultrasonic_setup();
@@ -80,8 +96,8 @@ void loop() {
         about_robot_clockwise_90();
         move_distance_backward(100, 40);
     }
-    
-    delay(100000); // for testing only
+
+//        delay(10000000); // for testing only
         
     // following navigation sequences are to be added
     if (mine_counter > 0 && mine_counter < 7) {
