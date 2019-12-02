@@ -1,5 +1,5 @@
-#define trigPin 12 //send waves
-#define echoPin 13 //receive waves
+#define trigPin 13 //send waves
+#define echoPin 12 //receive waves
 //#define led_red 11
 //#define led_green 10
 
