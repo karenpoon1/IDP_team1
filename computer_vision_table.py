@@ -1,5 +1,9 @@
+import serial
 import cv2 as cv
 import numpy as np
+
+ser = serial.Serial('/dev/tty.usbmodem?',9600')
+
 # table calibration: 3.0875 pixel/cm
 table = cv.imread("/Users/karenpoon/Pictures/idptable_non_distort2.jpg")
 table = table[:, 35:773]
@@ -22,6 +26,10 @@ for c in cnts:
     cy = int(M['m01']/M['m00'])
     print(cx, cy)
     cv.circle(table, (cx, cy), 7, (0, 0, 255), -1)
+
+home_x = 584
+home_y = 515
+
 
 # c = cv.rotate(mine_as_contours, cv.ROTATE_90_CLOCKWISE)
 
