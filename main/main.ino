@@ -11,23 +11,47 @@ int mine_counter;
 int mine_distances[8]; //calibrated values in an array
 unsigned long previousmillis;
 int j = 0;
+String data;
+int a;
 
 void setup() {
     AFMS.begin(); // Setup motor
     
     Serial.begin(9600);
-    delay(2000);
+
+            while(true){
+            if (Serial.available() > 0) {
+                char c;
+                c = Serial.read();
+                if (c == 'n') {
+//                    Serial.println(a);
+                    mine_distances[j] = a;
+                    Serial.println(mine_distances[j]);
+                    j++;
+                    data = "";
+                }
+                else {
+                data += c;
+                a = data.toInt();
+                }
+                if (j == 4){
+                  break;
+                }
+            }
+            }
+    about_robot_clockwise_90();
     
-    while(Serial.available() > 0) {
-        String serIn=Serial.readString();
-        int dist = serIn.toInt();
-        mine_distances[j] = dist;
-        j++;
-    }
-    Serial.println(mine_distances[0]);
-
-    move_distance_forward(100, mine_distances[0]); //test
-
+    move_distance_forward(100, mine_distances[1]); //test
+    stop_motors();
+    delay(1000);
+    move_distance_forward(100, mine_distances[2]); //test
+    stop_motors();
+    delay(1000);
+    move_distance_forward(100, mine_distances[3]); //test
+    stop_motors();
+    delay(1000);
+        
+    delay(10000000);
     servo_setup();
     LED_setup(); // LEDs initialised
     front_ultrasonic_setup();
