@@ -1,4 +1,4 @@
-int orientation = 0; //let's have 0 = north, 1 = south - can I use the same for both flip position and orientation detected?
+int orientation = 1; //let's have 0 = north, 1 = south - can I use the same for both flip position and orientation detected?
 //have it only change when hall effect measured, immediately use that to remember to flip
 //so when its referenced in the drop off function, it can be used to assume whether it was flipped
 
