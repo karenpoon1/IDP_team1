@@ -1,4 +1,4 @@
-int orientation = 1; //let's have 0 = north, 1 = south - can I use the same for both flip position and orientation detected?
+int orientation = 0; //let's have 0 = north, 1 = south - can I use the same for both flip position and orientation detected?
 //have it only change when hall effect measured, immediately use that to remember to flip
 //so when its referenced in the drop off function, it can be used to assume whether it was flipped
 
@@ -10,6 +10,7 @@ void pickupmine() {
   //if its south, orientation = 1
   //then close jaws all the way - check what this is to hold it firmly
   flip_mine();//this has an inbuilt delay
+  delay_with_LEDs(2000);
   servo_grab();//so does this, technically
   if (orientation == 1) {
     backflip_mine();//if orientation = south, flip (small_motor)

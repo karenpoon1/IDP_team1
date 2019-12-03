@@ -1,3 +1,6 @@
+#include <Wire.h>
+#include <Adafruit_MotorShield.h>
+Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 Adafruit_DCMotor *motor_flip = AFMS.getMotor(3);
 
 void flip_mine() {
@@ -17,7 +20,7 @@ void backflip_mine() {
 void lift_mine() {
     motor_flip->setSpeed(200);
     motor_flip->run(BACKWARD);
-    delay_with_LEDs(250);
+    delay_with_LEDs(200);
     motor_flip->setSpeed(100);
 }
 
