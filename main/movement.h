@@ -25,7 +25,6 @@ void move_distance_forward(int speed, int desired_distance) {
     motor_right->setSpeed(speed);
     motor_left->run(FORWARD);
     motor_right->run(FORWARD);
-    //delay(time);
     delay_with_LEDs(time);
 }
 
@@ -46,7 +45,6 @@ void move_distance_backward(int speed, int desired_distance) {
     motor_right->setSpeed(speed);
     motor_left->run(BACKWARD);
     motor_right->run(BACKWARD);
-    //delay(time);
     delay_with_LEDs(time);
 }
 
@@ -100,7 +98,6 @@ void anticlockwise_90() {
     motor_left->setSpeed(100);
     motor_right->setSpeed(0);
     motor_left->run(BACKWARD);
-    //delay(timedelay);
     delay_with_LEDs(timedelay);
 
 }
@@ -108,12 +105,4 @@ void anticlockwise_90() {
 void stop_motors() {
     motor_left->setSpeed(0);
     motor_right->setSpeed(0);
-    //delay(100000); delay for tests only
-}
-
-//make this proper end - add return to starting box section, then stop
-void endrun(void) {
-  //stop all programming
-  noInterrupts();
-  while(1) {}
 }

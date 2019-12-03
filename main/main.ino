@@ -2,21 +2,19 @@
 #include "movement.h"
 #include "ultrasonic.h"
 #include "servo.h"
-#include "homing.h"
 #include "movement_set.h"
 #include "grabber.h"
 #include "pickup_dropoff.h"
 
-int mine_counter;
+int mine_counter = 0;//number of mines picked up
 int mine_distances[8]; //calibrated values in an array
-unsigned long previousmillis;
+unsigned long previousmillis;//used to calibrate LED timing
 int j = 0;
 String data;
 int a;
 
 void setup() {
     AFMS.begin(); // Setup motor
-    
     Serial.begin(9600);
 //
 //            while(true){
@@ -40,18 +38,17 @@ void setup() {
 //            }
 //            }
 //    delay(5000);
-    servo_setup();
+    servo_setup();//setup servo
     LED_setup(); // LEDs initialised
-    front_ultrasonic_setup();
+    front_ultrasonic_setup();//setup ultrasonic sensors
     side_ultrasonic_setup();
-    mine_counter = 0;
     initial_movement(); // Home and robot faces known mine
     
 //    move_distance_forward(100,mine_distances[0]);
 }
 
 void loop() {
-    if (mine_counter == 0) {
+    if (mine_counter == 0) {//finding the mine on the line
         move_forward(100);
         previousmillis = millis(); //needed for LEDs
         while (true) { // change to counter so it doesnt enter an infinite loop
@@ -101,7 +98,7 @@ void loop() {
         move_distance_backward(100, 40);
     }
         
-    if (mine_counter > 0 && mine_counter < 7) {
+    if (mine_counter > 0 && mine_counter < 8) {
         move_forward(50);
         previousmillis = millis();
         while (true) { // change to counter so it doesnt enter an infinite loop
@@ -160,8 +157,12 @@ void loop() {
 
         // homing to left wall
         about_robot_clockwise_90();
-        move_distance_backward(100, 40);
-
-        mine_counter++;
-}
+        move_distance_backward(100, 40);        
+    }
+    if (mine_counter == 8) {
+        stop_motors();
+        noInterrupts();
+        while(1) {}//this stalls everything - could expand to try to navigate back to beginning
+    }
+    mine_counter++;
 }

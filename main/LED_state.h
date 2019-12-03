@@ -1,8 +1,8 @@
-const int orangepin =  6;//change later - pins for LEDs
+const int orangepin =  6;//pins for LEDs
 const int redpin = 7;
 int orangeState = LOW;  // states used to set the LEDs
 int redState = LOW;
-unsigned long previousMillis = 0;        // will store last time LED was updated
+unsigned long previousMillis = 0;  // will store last time LED was updated
 const long interval = 500;   // interval at which to blink (milliseconds) (0.5s for 2Hz)
 int ledtype = 1; //sets initial led state to blinking orange (2 is solid orange, 3 is blinking red)
 
@@ -25,7 +25,7 @@ void delay_with_LEDs (int starttime) {
       digitalWrite(orangepin, HIGH);
     }
     if (currentMillis - previousMillis >= interval) {
-      // save the last time you blinked the LED
+      // save the last time LED blinked
       previousMillis = currentMillis;
       if (ledtype == 1) {//flashing orange light (normal movement)
         orangeState = !orangeState;
@@ -41,7 +41,7 @@ void delay_with_LEDs (int starttime) {
   }
 }
 
-unsigned long LED_call (unsigned long previousMillis) {//takes time of previous blink - first call in function seperately defined?
+unsigned long LED_call (unsigned long previousMillis) {//function for inside while/for loop - takes time loop started first time, updated regularly
   unsigned long currentMillis = millis();//measures current time
   if (ledtype == 2) {//solid orange light (mine detected)
       digitalWrite(redpin, LOW);

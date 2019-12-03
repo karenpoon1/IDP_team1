@@ -1,22 +1,16 @@
-int orientation = 1; //let's have 0 = north, 1 = south - can I use the same for both flip position and orientation detected?
-//have it only change when hall effect measured, immediately use that to remember to flip
-//so when its referenced in the drop off function, it can be used to assume whether it was flipped
+int orientation = 1; //let's have 0 = north, 1 = south 
 
 void pickupmine() {
   digitalWrite(redpin, LOW);//solid orange light
   digitalWrite(orangepin, HIGH);
-  //both hall sensors are +ve? - get closer until 1 is referenced
-  //if its north, orientation = 0
-  //if its south, orientation = 1
-  //then close jaws all the way - check what this is to hold it firmly
-  flip_mine();//this has an inbuilt delay
-  servo_grab();//so does this, technically
-  if (orientation == 1) {
+  //add hall effect sensor data here when we know what the signal looks like
+  flip_mine();//flip arm forward
+  servo_grab();//grab the mine
+  if (orientation == 1) {//south
     backflip_mine();//if orientation = south, flip (small_motor)
   }
-  else if (orientation == 0) {
+  else if (orientation == 0) {//north
     lift_mine();
-    //lift_grabber();//else lift it a bit? so it's not blocking the sensor? - this probably isnt possible
   }
   digitalWrite(orangepin, LOW);
   ledtype = 3;//change light state to blinking red
@@ -24,19 +18,15 @@ void pickupmine() {
 }
 
 void dropoffmine() {
-  //this is easier
-  if (orientation == 1) {//flip back if necessary - if orientation is 1, else lower a bit
+  if (orientation == 1) {//flip back if necessary - if orientation is south
     flip_mine();
   }
-  else if (orientation == 0){
+  else if (orientation == 0){//north
     lower_mine();
-    //lower_grabber();
   }
   orientation = 0;//set orientation = 0 again
-  servo_release();
-  //return servo to 0 degrees - or reverse
+  servo_release();//drop mine
   ledtype = 1;//change light state to blinking orange
-  backflip_mine();
-  //lift_grabber();//lift grabber a bit (if possible)  
+  backflip_mine(); 
   //mine has been dropped!
 }
