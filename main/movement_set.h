@@ -4,6 +4,6 @@ void initial_movement() {
     // 65 comes from required 50 from table, and half of robot size
     move_distance_forward(100, 45);
     about_robot_anticlockwise_90();
-    move_distance_backward(100, 30);
+    move_distance_backward(100, 45);
     }
     

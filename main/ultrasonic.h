@@ -26,13 +26,14 @@ void side_ultrasonic_setup() {
 }
 
 void detect_front() {
+    long duration;
     prev_front_distance = curr_front_distance;
     digitalWrite(front_trigPin, LOW);
     delayMicroseconds(2);
     digitalWrite(front_trigPin, HIGH);
     delayMicroseconds(10);
     digitalWrite(front_trigPin, LOW);
-    long duration = pulseIn(front_echoPin, HIGH);
+    duration = pulseIn(front_echoPin, HIGH);
     curr_front_distance = (duration/2) / 29.1; // Assume speed of sound 340m/s
 }
 
@@ -40,21 +41,25 @@ void mine_wall_detect(int thresh_from_mine) {
     if (prev_front_distance == 0 || curr_front_distance == 0) {
         return; // can return false
     }
-    if (prev_front_distance < thresh_from_mine && curr_front_distance < thresh_from_mine) {
+    else if (prev_front_distance < thresh_from_mine && curr_front_distance < thresh_from_mine) {
         mine_wall_detected = true; // can return true after resetting global variables
         prev_front_distance = 0;
         curr_front_distance = 0;
     }
+    delay(200);
 }
 
+
+
 void detect_side() {
+    long duration;
     prev_side_distance = curr_side_distance;
     digitalWrite(side_trigPin, LOW);
     delayMicroseconds(2);
     digitalWrite(side_trigPin, HIGH);
     delayMicroseconds(10);
     digitalWrite(side_trigPin, LOW);
-    long duration = pulseIn(side_echoPin, HIGH);
+    duration = pulseIn(side_echoPin, HIGH);
     curr_side_distance = (duration/2) / 29.1; // Assume speed of sound 340m/s
 }
 

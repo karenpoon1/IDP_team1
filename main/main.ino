@@ -18,40 +18,28 @@ void setup() {
     AFMS.begin(); // Setup motor
     
     Serial.begin(9600);
-
-            while(true){
-            if (Serial.available() > 0) {
-                char c;
-                c = Serial.read();
-                if (c == 'n') {
-//                    Serial.println(a);
-                    mine_distances[j] = a;
-                    Serial.println(mine_distances[j]);
-                    j++;
-                    data = "";
-                }
-                else {
-                data += c;
-                a = data.toInt();
-                }
-                if (j == 4){
-                  break;
-                }
-            }
-            }
-    about_robot_clockwise_90();
-    
-    move_distance_forward(100, mine_distances[1]); //test
-    stop_motors();
-    delay(1000);
-    move_distance_forward(100, mine_distances[2]); //test
-    stop_motors();
-    delay(1000);
-    move_distance_forward(100, mine_distances[3]); //test
-    stop_motors();
-    delay(1000);
-        
-    delay(10000000);
+//
+//            while(true){
+//            if (Serial.available() > 0) {
+//                char c;
+//                c = Serial.read();
+//                if (c == 'n') {
+////                    Serial.println(a);
+//                    mine_distances[j] = a;
+//                    Serial.println(mine_distances[j]);
+//                    j++;
+//                    data = "";
+//                }
+//                else {
+//                data += c;
+//                a = data.toInt();
+//                }
+//                if (j == 4){
+//                  break;
+//                }
+//            }
+//            }
+//    delay(5000);
     servo_setup();
     LED_setup(); // LEDs initialised
     front_ultrasonic_setup();
@@ -68,37 +56,35 @@ void loop() {
         previousmillis = millis(); //needed for LEDs
         while (true) { // change to counter so it doesnt enter an infinite loop
             detect_front();
-            mine_wall_detect(10); // detect if <10 in front
+            mine_wall_detect(13); // detect if <10 in front
             previousmillis = LED_call(previousmillis); //LED blinking
             if (mine_wall_detected) {
                 mine_wall_detected = false;
                 break;
             }
-            delay(500);
         }
         stop_motors();
         delay(2000);
                 
         pickupmine();
-
-        move_forward(100);
+        delay(2000);
+        move_forward(200);
         previousmillis = millis();
         while (true) { // change to counter so it doesnt enter an infinite loop
             previousmillis = LED_call(previousmillis);
             detect_front(); //detect wall
-            mine_wall_detect(30);
+            mine_wall_detect(45);
             if (mine_wall_detected) { //if wall detected
                 mine_wall_detected = false;
                 break;
             }
-            delay(500);
         }
         stop_motors();
 
         about_robot_anticlockwise_45();
-
+        stop_motors();
         dropoffmine();
-
+        delay(4000);
         // the following sequence is robot homing with walls, then going towards the first mine to picked, hardcode!
         about_robot_clockwise_45();
 
