@@ -26,51 +26,35 @@ void side_ultrasonic_setup() {
 }
 
 void detect_front() {
-    long duration;
     prev_front_distance = curr_front_distance;
     digitalWrite(front_trigPin, LOW);
     delayMicroseconds(2);
     digitalWrite(front_trigPin, HIGH);
     delayMicroseconds(10);
     digitalWrite(front_trigPin, LOW);
-    duration = pulseIn(front_echoPin, HIGH);
+    long duration = pulseIn(front_echoPin, HIGH);
     curr_front_distance = (duration/2) / 29.1; // Assume speed of sound 340m/s
 }
 
-void actual_detect(int thresh_from_mine) {
+void mine_wall_detect(int thresh_from_mine) {
     if (prev_front_distance == 0 || curr_front_distance == 0) {
-        return;
+        return; // can return false
     }
-    else if (prev_front_distance < thresh_from_mine && curr_front_distance < thresh_from_mine) {
-        mine_wall_detected = true;
+    if (prev_front_distance < thresh_from_mine && curr_front_distance < thresh_from_mine) {
+        mine_wall_detected = true; // can return true after resetting global variables
         prev_front_distance = 0;
         curr_front_distance = 0;
     }
-    else {
-        return;
-    }
-
-    // Serial Monitor output
-    if (curr_front_distance >= 200 || curr_front_distance <= 0){
-        Serial.println("Out of range");
-    }
-    else {
-        Serial.print(curr_front_distance);
-        Serial.println(" cm");
-    }
-    
-    delay(500);
 }
 
 void detect_side() {
-    long duration;
     prev_side_distance = curr_side_distance;
     digitalWrite(side_trigPin, LOW);
     delayMicroseconds(2);
     digitalWrite(side_trigPin, HIGH);
     delayMicroseconds(10);
     digitalWrite(side_trigPin, LOW);
-    duration = pulseIn(side_echoPin, HIGH);
+    long duration = pulseIn(side_echoPin, HIGH);
     curr_side_distance = (duration/2) / 29.1; // Assume speed of sound 340m/s
 }
 
@@ -78,30 +62,9 @@ void mine_detect(int thresh_from_mine) {
     if (prev_side_distance == 0 || curr_side_distance == 0) {
         return;
     }
-    else if (prev_side_distance < thresh_from_mine && curr_side_distance < thresh_from_mine) {
+    if (curr_side_distance < thresh_from_mine) {
         mine_detected = true;
         prev_front_distance = 0;
         curr_front_distance = 0;
     }
-    else {
-        return;
-    }
-    delay(500);
 }
-
-//void check_mine_forward() {
-//    move_forward();
-//    int counter 0;
-//    while (counter<50) { // Counter to calibrate distance to move
-//        detect_mine();
-//        if (second_old_mine_distance < new_mine_distance &&
-//        second_new_mine_distance < new_mine_distance) {
-//            stop_motors();
-//        else {
-//            stop_motors();
-//            move_backward();
-//        }
-//        counter++
-//        delay(10)
-//
-//}
