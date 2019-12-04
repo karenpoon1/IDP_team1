@@ -41,14 +41,17 @@ void mine_wall_detect(int thresh_from_mine) {
     if (prev_front_distance == 0 || curr_front_distance == 0) {
         return; // can return false
     }
-    else if (prev_front_distance < thresh_from_mine && curr_front_distance < thresh_from_mine) {
+    if (curr_front_distance < thresh_from_mine) {
         mine_wall_detected = true; // can return true after resetting global variables
         prev_front_distance = 0;
         curr_front_distance = 0;
     }
-    delay(200);
+    else {
+      return;
+    }
+    delay(100);
+    
 }
-
 
 
 void detect_side() {
@@ -72,4 +75,8 @@ void mine_detect(int thresh_from_mine) {
         prev_front_distance = 0;
         curr_front_distance = 0;
     }
+    else {
+      return;
+    }
+    delay(100);    
 }

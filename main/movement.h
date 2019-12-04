@@ -49,7 +49,7 @@ void move_distance_backward(int speed, int desired_distance) {
 }
 
 void about_robot_clockwise_90() {
-    int timedelay = 2750;
+    int timedelay = 2800;
     motor_left->setSpeed(100);
     motor_right->setSpeed(100);
     motor_left->run(FORWARD);
@@ -58,7 +58,7 @@ void about_robot_clockwise_90() {
 }
 
 void about_robot_anticlockwise_90() {
-    int timedelay = 2750;
+    int timedelay = 2800;
     motor_left->setSpeed(100);
     motor_right->setSpeed(100);
     motor_left->run(BACKWARD);
