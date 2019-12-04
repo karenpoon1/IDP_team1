@@ -1,11 +1,11 @@
 
 // front ultrasonic sensor
-#define front_trigPin 11 // Send waves
-#define front_echoPin 10 // Receive waves
+#define front_trigPin 10 // Send waves
+#define front_echoPin 11 // Receive waves
 
 // side ultrasonic sensor
-#define side_trigPin 13
-#define side_echoPin 12
+#define side_trigPin 12
+#define side_echoPin 13
 
 long curr_front_distance = 0;
 long prev_front_distance = 0;

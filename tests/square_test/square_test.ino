@@ -10,45 +10,115 @@ void setup() {
     AFMS.begin();
 }
 
-void move_forward() {
-    motor_left->setSpeed(50);
-    motor_right->setSpeed(50);
+int speed = 50;
+
+void move_forward(int speed) {
+    motor_left->setSpeed(speed);
+    motor_right->setSpeed(speed);
     motor_left->run(FORWARD);
-    motor_right->run(BACKWARD);
-    delay(5000);
+    motor_right->run(FORWARD);
 }
 
-void move_backward() {
-    motor_left->setSpeed(50);
-    motor_right->setSpeed(50);
+void move_distance_forward(int speed, int desired_distance) {
+    //desired_distance in cm
+    double actual_speed;
+    int time;
+    actual_speed = speed/12.5; //manual calibration
+    time = (desired_distance/actual_speed)*1000;
+    motor_left->setSpeed(speed);
+    motor_right->setSpeed(speed);
+    motor_left->run(FORWARD);
+    motor_right->run(FORWARD);
+    delay(time);
+}
+
+void move_backward(int speed) {
+    motor_left->setSpeed(speed);
+    motor_right->setSpeed(speed);
+    motor_left->run(BACKWARD);
+    motor_right->run(BACKWARD);
+}
+
+void move_distance_backward(int speed, int desired_distance) {
+    //desired_distance in cm
+    double actual_speed;
+    int time;
+    actual_speed = speed/12.5; //manual calibration
+    time = (desired_distance/actual_speed)*1000;
+    motor_left->setSpeed(speed);
+    motor_right->setSpeed(speed);
+    motor_left->run(BACKWARD);
+    motor_right->run(BACKWARD);
+    delay(time);
+}
+
+void about_robot_clockwise_90() {
+    int timedelay = 2780;
+    motor_left->setSpeed(100);
+    motor_right->setSpeed(100);
+    motor_left->run(FORWARD);
+    motor_right->run(BACKWARD);
+    delay(timedelay);
+}
+
+void about_robot_anticlockwise_90() {
+    int timedelay = 2780;
+    motor_left->setSpeed(100);
+    motor_right->setSpeed(100);
     motor_left->run(BACKWARD);
     motor_right->run(FORWARD);
-    delay(5000);
+    delay(timedelay);
+}
+
+void about_robot_clockwise_45() {
+    int timedelay = 1295;
+    motor_left->setSpeed(100);
+    motor_right->setSpeed(100);
+    motor_left->run(FORWARD);
+    motor_right->run(BACKWARD);
+    delay(timedelay);
+}
+
+void about_robot_anticlockwise_45() {
+    int timedelay = 1295;
+    motor_left->setSpeed(100);
+    motor_right->setSpeed(100);
+    motor_left->run(BACKWARD);
+    motor_right->run(FORWARD);
+    delay(timedelay);
 }
 
 void clockwise_90() {
-    motor_left->setSpeed(50);
+    int timedelay = 5200;
+    motor_left->setSpeed(100);
     motor_right->setSpeed(0);
     motor_left->run(FORWARD);
-    delay(10600);
+    //delay(timedelay);    
+    delay(13000);
 }
 
 void anticlockwise_90() {
-    motor_left->setSpeed(50);
+    int timedelay = 5200;
+    motor_left->setSpeed(100);
     motor_right->setSpeed(0);
     motor_left->run(BACKWARD);
-    delay(12000);
+    delay(timedelay);
+
 }
 
 void stop_motors() {
     motor_left->setSpeed(0);
     motor_right->setSpeed(0);
-    delay(100000);
 }
 
 void loop() {
-    move_forward();
-    clockwise_90();
+    move_distance_forward(100,15);
+    about_robot_clockwise_90();
+    move_distance_forward(100,15);
+    about_robot_anticlockwise_90();
+
+    stop_motors();
+    delay(5000);
 
 //     stop_motors();
 
