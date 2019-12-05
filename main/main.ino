@@ -68,11 +68,11 @@ void loop() {
                 
         pickupmine();
         delay(5000);
-        move_forward(100);
+        move_forward(150);
         previousmillis = millis();
         while (true) { // change to counter so it doesnt enter an infinite loop
             detect_front(); //detect wall
-            mine_wall_detect(15);
+            mine_wall_detect(20);
             previousmillis = LED_call(previousmillis);
             if (mine_wall_detected) { //if wall detected
                 mine_wall_detected = false;
@@ -82,21 +82,22 @@ void loop() {
         
         stop_motors();
 
-        about_robot_anticlockwise_45();
-        stop_motors();
-        dropoffmine();
-        delay(4000);
-        // the following sequence is robot homing with walls, then going towards the first mine to picked, hardcode!
-        about_robot_clockwise_45();
-        stop_motors();
-        delay(2000);
-        // homing to front wall
         about_robot_clockwise_90();
-        move_distance_backward(100, 60);
+        move_distance_backward(50,35);
+        about_robot_anticlockwise_90();
+        stop_motors();
+ 
+        dropoffmine();
+        delay(1000);
+        // the following sequence is robot homing with walls, then going towards the first mine to picked, hardcode!
+        
+        
+        about_robot_clockwise_90();
+        move_distance_backward(100, 25);
         move_distance_forward(100, 50);
 
         // moving towards mine in forward direction only
-        move_distance_forward(100, mine_distances[mine_counter]-25); 
+        move_distance_forward(100, mine_distances[mine_counter]-30); 
 
         // homing to left wall
         about_robot_clockwise_90();
@@ -118,25 +119,25 @@ void loop() {
         stop_motors();
         delay(2000);
 
-        move_distance_forward(100,10); // arbitrary (or backward)
+        move_distance_forward(100,16); // arbitrary (or backward)
 
         about_robot_anticlockwise_90();
 
-        move_distance_backward(100,20);
+        move_distance_backward(100,5);
 
         stop_motors();
         delay(2000);
         
         pickupmine();
 
-        move_distance_backward(100, mine_distances[mine_counter-1] + 80); //- it can't handle this atm
+        move_distance_backward(100, mine_distances[mine_counter-1] + 70); //- it can't handle this atm
         move_distance_forward(100, 50);
         about_robot_anticlockwise_90();
         move_forward(50);
         previousmillis = millis();
         while (true) { // change to counter so it doesnt enter an infinite loop
             detect_front(); //detect wall
-            mine_wall_detect(30); 
+            mine_wall_detect(18); 
             previousmillis = LED_call(previousmillis);
             if (mine_wall_detected) { //if wall detected
                 mine_wall_detected = false;
@@ -147,20 +148,22 @@ void loop() {
         
         stop_motors();
         delay(2000);
-
-        about_robot_anticlockwise_45();
+        move_distance_backward(100,10);
+        about_robot_clockwise_90();
+        move_distance_backward(100,20);
+        about_robot_anticlockwise_90();
+        stop_motors();
+        delay(1000);
         
         dropoffmine();
         
-        about_robot_clockwise_45();
-
-        // homing to front wall        
         about_robot_clockwise_90();
-        move_distance_backward(100, 60);
+        move_distance_backward(100,20);
+
         move_distance_forward(100, 50);
 
         // moving towards mine in forward direction only
-        move_distance_forward(100, mine_distances[mine_counter]-20);
+        move_distance_forward(100, mine_distances[mine_counter]-30);
 
         // homing to left wall
         about_robot_clockwise_90();
