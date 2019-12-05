@@ -5,5 +5,5 @@ void initial_movement() {
     move_distance_forward(100, 45);
     about_robot_anticlockwise_90();
     move_distance_backward(100, 55);
-    }
+}
     

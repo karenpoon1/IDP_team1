@@ -16,7 +16,7 @@ int a;
 void setup() {
     AFMS.begin(); // Setup motor
     Serial.begin(9600);
-    while(true){
+    while(true){//reading distances from python processed computer vision
             if (Serial.available() > 0) {
                 char c;
                 c = Serial.read();
