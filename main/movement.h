@@ -16,10 +16,10 @@ void move_forward(int speed) {
 }
 
 void move_distance_forward(int speed, int desired_distance) {
-    //desired_distance in cm
+    //desired_distance is in cm
     double actual_speed;
     int time;
-    actual_speed = speed/12.5; //manual calibration
+    actual_speed = speed/12.5; //calibration
     time = (desired_distance/actual_speed)*1000;
     motor_left->setSpeed(speed);
     motor_right->setSpeed(speed);
@@ -36,10 +36,10 @@ void move_backward(int speed) {
 }
 
 void move_distance_backward(int speed, int desired_distance) {
-    //desired_distance in cm
+    //desired_distance is in cm
     double actual_speed;
     int time;
-    actual_speed = speed/12.5; //manual calibration
+    actual_speed = speed/12.5; //calibration
     time = (desired_distance/actual_speed)*1000;
     motor_left->setSpeed(speed);
     motor_right->setSpeed(speed);
@@ -89,7 +89,6 @@ void clockwise_90() {
     motor_left->setSpeed(100);
     motor_right->setSpeed(0);
     motor_left->run(FORWARD);
-    //delay(timedelay);    
     delay_with_LEDs(13000);
 }
 

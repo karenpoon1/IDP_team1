@@ -25,7 +25,7 @@ void side_ultrasonic_setup() {
     pinMode(side_echoPin, INPUT);
 }
 
-void detect_front() {
+void detect_front() { // Front ultrasonic sensor sends and receives signal, calculating distance
     long duration;
     prev_front_distance = curr_front_distance;
     digitalWrite(front_trigPin, LOW);
@@ -37,12 +37,14 @@ void detect_front() {
     curr_front_distance = (duration/2) / 29.1; // Assume speed of sound 340m/s
 }
 
-void mine_wall_detect(int thresh_from_mine) {
-    if (prev_front_distance == 0 || curr_front_distance == 0) {
-        return; // can return false
+void mine_wall_detect(int thresh_from_mine) { 
+    // Change boolean value of mine_wall_detected that triggers another function 
+    // when distance from object detected is smaller than a certain threshold
+    if (prev_front_distance == 0 || curr_front_distance == 0) { // Check reliability of reading, unrealible if reading is 0
+        return; 
     }
     if (curr_front_distance < thresh_from_mine) {
-        mine_wall_detected = true; // can return true after resetting global variables
+        mine_wall_detected = true;
         prev_front_distance = 0;
         curr_front_distance = 0;
     }
@@ -53,8 +55,7 @@ void mine_wall_detect(int thresh_from_mine) {
     
 }
 
-
-void detect_side() {
+void detect_side() { // Side ultrasonic sensor sends and receives signal, calculating distance
     long duration;
     prev_side_distance = curr_side_distance;
     digitalWrite(side_trigPin, LOW);
@@ -67,6 +68,8 @@ void detect_side() {
 }
 
 void mine_detect(int thresh_from_mine) {
+    // Change boolean value of mine_detected that triggers another function 
+    // when distance from object detected is smaller than a certain threshold
     if (prev_side_distance == 0 || curr_side_distance == 0) {
         return;
     }
