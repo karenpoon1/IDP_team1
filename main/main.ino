@@ -17,7 +17,7 @@ void setup() {
     AFMS.begin(); // Setup motor
     // Receive mine_distances from python through serial connection
     Serial.begin(9600);
-    while(true){
+    while(true){//reading distances from python processed computer vision
             if (Serial.available() > 0) {
                 char c;
                 c = Serial.read();
