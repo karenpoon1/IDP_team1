@@ -13,12 +13,12 @@ void setup() {
 
 void loop() {
   //tests pickup and dropoff things in both orientations
-  orientation = 1;
+  orientation = 0;
   pickupmine();
   delay_with_LEDs(5000);
   dropoffmine();
   delay_with_LEDs(5000);
-  orientation = 0;
+  orientation = 1;
   pickupmine();
   delay_with_LEDs(5000);
   dropoffmine();

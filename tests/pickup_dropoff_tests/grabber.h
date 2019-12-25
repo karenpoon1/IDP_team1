@@ -1,3 +1,6 @@
+#include <Wire.h>
+#include <Adafruit_MotorShield.h>
+Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 Adafruit_DCMotor *motor_flip = AFMS.getMotor(3);
 
 void flip_mine() {
